@@ -23,16 +23,19 @@ namespace FallingPlatformsSurvival
         private readonly RaycastHit2D[] groundHits = new RaycastHit2D[8];
         private readonly ContactFilter2D groundFilter = new() { useTriggers = false };
 
+        private bool initialized;
         private Rigidbody2D body;
         private BoxCollider2D boxCollider;
         private SpriteRenderer spriteRenderer;
         private InputAction moveAction;
         private InputAction jumpAction;
 
-        private float horizontalInput;
+        private float keyboardHorizontalInput;
         private float lastGroundedTime = float.NegativeInfinity;
         private float lastJumpPressedTime = float.NegativeInfinity;
         private Vector2 spawnPosition;
+        private bool touchMoveLeftHeld;
+        private bool touchMoveRightHeld;
         private bool isGrounded;
         private bool isAlive = true;
 
@@ -41,27 +44,17 @@ namespace FallingPlatformsSurvival
         public bool IsAlive => isAlive;
         public bool HasBufferedJump => Time.time - lastJumpPressedTime <= jumpBufferSeconds;
         public bool CanJump => isGrounded || Time.time - lastGroundedTime <= coyoteTimeSeconds;
+        public float HorizontalIntent => ResolveHorizontalInput();
 
         private void Awake()
         {
-            body = GetComponent<Rigidbody2D>();
-            boxCollider = GetComponent<BoxCollider2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-
-            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
-            spriteRenderer.color = playerColor;
-
-            boxCollider.size = playerSize;
-            body.gravityScale = 4f;
-            body.freezeRotation = true;
-            body.interpolation = RigidbodyInterpolation2D.Interpolate;
-
-            transform.localScale = new Vector3(playerSize.x, playerSize.y, 1f);
-            spawnPosition = transform.position;
+            EnsureInitialized();
         }
 
         private void OnEnable()
         {
+            EnsureInitialized();
+
             var actionAsset = InputSystem.actions;
             if (actionAsset == null)
             {
@@ -88,16 +81,18 @@ namespace FallingPlatformsSurvival
                 return;
             }
 
-            horizontalInput = moveAction != null ? moveAction.ReadValue<Vector2>().x : 0f;
+            keyboardHorizontalInput = moveAction != null ? moveAction.ReadValue<Vector2>().x : 0f;
 
             if (jumpAction != null && jumpAction.WasPressedThisFrame())
             {
-                lastJumpPressedTime = Time.time;
+                QueueJumpPress();
             }
         }
 
         private void FixedUpdate()
         {
+            EnsureInitialized();
+
             if (!isAlive)
             {
                 return;
@@ -106,7 +101,7 @@ namespace FallingPlatformsSurvival
             RefreshGroundState();
 
             var velocity = body.linearVelocity;
-            velocity.x = horizontalInput * moveSpeed;
+            velocity.x = ResolveHorizontalInput() * moveSpeed;
             body.linearVelocity = velocity;
 
             if (HasBufferedJump && CanJump)
@@ -124,6 +119,8 @@ namespace FallingPlatformsSurvival
 
         public void ResetForRun(Vector2 newSpawnPosition)
         {
+            EnsureInitialized();
+
             spawnPosition = newSpawnPosition;
             transform.position = spawnPosition;
             transform.rotation = Quaternion.identity;
@@ -136,26 +133,89 @@ namespace FallingPlatformsSurvival
             isAlive = true;
             isGrounded = false;
             CurrentPlatform = null;
+            keyboardHorizontalInput = 0f;
+            touchMoveLeftHeld = false;
+            touchMoveRightHeld = false;
             lastGroundedTime = float.NegativeInfinity;
             lastJumpPressedTime = float.NegativeInfinity;
         }
 
         public void HandleDeath()
         {
+            EnsureInitialized();
+
             if (!isAlive)
             {
                 return;
             }
 
             isAlive = false;
+            keyboardHorizontalInput = 0f;
+            touchMoveLeftHeld = false;
+            touchMoveRightHeld = false;
             body.linearVelocity = Vector2.zero;
             body.angularVelocity = 0f;
             body.simulated = false;
             spriteRenderer.color = deadColor;
         }
 
+        public void SetTouchMoveInput(float direction)
+        {
+            EnsureInitialized();
+
+            var normalizedDirection = Mathf.Sign(direction);
+            if (normalizedDirection < 0f)
+            {
+                touchMoveLeftHeld = true;
+            }
+            else if (normalizedDirection > 0f)
+            {
+                touchMoveRightHeld = true;
+            }
+        }
+
+        public void ClearTouchMoveInput(float direction)
+        {
+            EnsureInitialized();
+
+            var normalizedDirection = Mathf.Sign(direction);
+            if (normalizedDirection < 0f)
+            {
+                touchMoveLeftHeld = false;
+            }
+            else if (normalizedDirection > 0f)
+            {
+                touchMoveRightHeld = false;
+            }
+            else
+            {
+                ClearTouchMoveInput();
+            }
+        }
+
+        public void ClearTouchMoveInput()
+        {
+            EnsureInitialized();
+            touchMoveLeftHeld = false;
+            touchMoveRightHeld = false;
+        }
+
+        public void QueueJumpPress()
+        {
+            EnsureInitialized();
+
+            if (!isAlive)
+            {
+                return;
+            }
+
+            lastJumpPressedTime = Time.time;
+        }
+
         public PlayerRuntimeState GetRuntimeState()
         {
+            EnsureInitialized();
+
             return new PlayerRuntimeState(
                 (Vector2)transform.position,
                 body != null ? body.linearVelocity : Vector2.zero,
@@ -168,6 +228,8 @@ namespace FallingPlatformsSurvival
 
         private void RefreshGroundState()
         {
+            EnsureInitialized();
+
             var hitCount = boxCollider.Cast(Vector2.down, groundFilter, groundHits, groundCheckDistance);
             PlatformBehaviour groundedPlatform = null;
 
@@ -202,6 +264,40 @@ namespace FallingPlatformsSurvival
             }
 
             isGrounded = groundedNow;
+        }
+
+        private void EnsureInitialized()
+        {
+            if (initialized)
+            {
+                return;
+            }
+
+            body = GetComponent<Rigidbody2D>();
+            boxCollider = GetComponent<BoxCollider2D>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
+            spriteRenderer.color = playerColor;
+
+            boxCollider.size = playerSize;
+            body.gravityScale = 4f;
+            body.freezeRotation = true;
+            body.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+            transform.localScale = new Vector3(playerSize.x, playerSize.y, 1f);
+            spawnPosition = transform.position;
+            initialized = true;
+        }
+
+        private float ResolveHorizontalInput()
+        {
+            if (touchMoveLeftHeld == touchMoveRightHeld)
+            {
+                return keyboardHorizontalInput;
+            }
+
+            return touchMoveRightHeld ? 1f : -1f;
         }
     }
 }

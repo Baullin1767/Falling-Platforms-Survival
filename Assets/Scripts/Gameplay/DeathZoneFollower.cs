@@ -10,14 +10,13 @@ namespace FallingPlatformsSurvival
 
         private BoxCollider2D triggerCollider;
         private GameManager gameManager;
+        private bool initialized;
 
         public Transform FollowTarget { get; private set; }
 
         private void Awake()
         {
-            triggerCollider = GetComponent<BoxCollider2D>();
-            triggerCollider.isTrigger = true;
-            triggerCollider.size = zoneSize;
+            EnsureInitialized();
         }
 
         private void Update()
@@ -27,6 +26,8 @@ namespace FallingPlatformsSurvival
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            EnsureInitialized();
+
             if (other.GetComponent<PlayerController>() != null)
             {
                 gameManager?.HandlePlayerDeath();
@@ -45,6 +46,8 @@ namespace FallingPlatformsSurvival
 
         public void SnapToTarget()
         {
+            EnsureInitialized();
+
             if (FollowTarget == null)
             {
                 return;
@@ -52,6 +55,19 @@ namespace FallingPlatformsSurvival
 
             var targetPosition = FollowTarget.position;
             transform.position = new Vector3(targetPosition.x, targetPosition.y + verticalOffset, 0f);
+        }
+
+        private void EnsureInitialized()
+        {
+            if (initialized)
+            {
+                return;
+            }
+
+            triggerCollider = GetComponent<BoxCollider2D>();
+            triggerCollider.isTrigger = true;
+            triggerCollider.size = zoneSize;
+            initialized = true;
         }
     }
 }

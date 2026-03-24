@@ -10,16 +10,19 @@ namespace FallingPlatformsSurvival
 
         private Vector3 dampVelocity;
         private float minimumY;
+        private bool initialized;
 
         public Transform Target { get; private set; }
 
         private void Awake()
         {
-            minimumY = transform.position.y;
+            EnsureInitialized();
         }
 
         private void LateUpdate()
         {
+            EnsureInitialized();
+
             if (Target == null)
             {
                 return;
@@ -36,6 +39,8 @@ namespace FallingPlatformsSurvival
 
         public void SnapToTarget()
         {
+            EnsureInitialized();
+
             if (Target == null)
             {
                 return;
@@ -49,6 +54,17 @@ namespace FallingPlatformsSurvival
         {
             var targetY = Mathf.Max(minimumY, Target.position.y + verticalOffset);
             return new Vector3(Target.position.x, targetY, transform.position.z);
+        }
+
+        private void EnsureInitialized()
+        {
+            if (initialized)
+            {
+                return;
+            }
+
+            minimumY = transform.position.y;
+            initialized = true;
         }
     }
 }

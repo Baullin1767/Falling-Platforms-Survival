@@ -78,7 +78,7 @@ namespace FallingPlatformsSurvival
             deathZoneFollower.SetFollowTarget(cameraFollow.transform);
             deathZoneFollower.SnapToTarget();
 
-            uiManager.Bind(this);
+            uiManager.Bind(this, playerController);
             uiManager.ShowGameplay(elapsedSurvivalTime);
 
             runState = GameRunState.Playing;

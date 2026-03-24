@@ -21,6 +21,7 @@ namespace FallingPlatformsSurvival
         private SpriteRenderer spriteRenderer;
         private BoxCollider2D boxCollider;
         private Rigidbody2D body;
+        private bool initialized;
 
         private float collapseDelay;
         private float countdownRemaining;
@@ -33,20 +34,13 @@ namespace FallingPlatformsSurvival
 
         private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            boxCollider = GetComponent<BoxCollider2D>();
-            body = GetComponent<Rigidbody2D>();
-
-            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
-            boxCollider.size = Vector2.one;
-            body.bodyType = RigidbodyType2D.Kinematic;
-            body.gravityScale = 0f;
-            body.freezeRotation = false;
-            body.interpolation = RigidbodyInterpolation2D.Interpolate;
+            EnsureInitialized();
         }
 
         private void Update()
         {
+            EnsureInitialized();
+
             if (!gameObject.activeSelf)
             {
                 return;
@@ -76,12 +70,15 @@ namespace FallingPlatformsSurvival
 
         public void Initialize(PlatformManager owner, int id)
         {
+            EnsureInitialized();
             manager = owner;
             PlatformId = id;
         }
 
         public void Activate(Vector2 position, Vector2 scale, float timerSeconds, float fallWeight)
         {
+            EnsureInitialized();
+
             collapseDelay = timerSeconds;
             countdownRemaining = timerSeconds;
             CollapseMode = Random.value <= fallWeight ? PlatformCollapseMode.Fall : PlatformCollapseMode.Vanish;
@@ -107,6 +104,8 @@ namespace FallingPlatformsSurvival
 
         public void NotifyPlayerLanded()
         {
+            EnsureInitialized();
+
             if (CollapseState != PlatformCollapseState.Idle)
             {
                 return;
@@ -118,11 +117,13 @@ namespace FallingPlatformsSurvival
 
         public void SetSimulationEnabled(bool enabled)
         {
+            EnsureInitialized();
             body.simulated = enabled;
         }
 
         public void RecycleImmediately()
         {
+            EnsureInitialized();
             CollapseState = PlatformCollapseState.Recycling;
             body.simulated = false;
             body.linearVelocity = Vector2.zero;
@@ -132,6 +133,7 @@ namespace FallingPlatformsSurvival
 
         public PlatformRuntimeState GetRuntimeState(PlatformBehaviour currentPlatform)
         {
+            EnsureInitialized();
             return new PlatformRuntimeState(
                 PlatformId,
                 gameObject.activeSelf,
@@ -159,6 +161,27 @@ namespace FallingPlatformsSurvival
             body.gravityScale = fallGravityScale;
             body.linearVelocity = new Vector2(Random.Range(-1f, 1f), -1f);
             body.angularVelocity = Random.Range(-fallAngularVelocity, fallAngularVelocity);
+        }
+
+        private void EnsureInitialized()
+        {
+            if (initialized)
+            {
+                return;
+            }
+
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            boxCollider = GetComponent<BoxCollider2D>();
+            body = GetComponent<Rigidbody2D>();
+
+            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
+            boxCollider.size = Vector2.one;
+            body.bodyType = RigidbodyType2D.Kinematic;
+            body.gravityScale = 0f;
+            body.freezeRotation = false;
+            body.interpolation = RigidbodyInterpolation2D.Interpolate;
+
+            initialized = true;
         }
     }
 }

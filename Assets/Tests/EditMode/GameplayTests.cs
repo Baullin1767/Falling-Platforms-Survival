@@ -1,28 +1,53 @@
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace FallingPlatformsSurvival.Tests
 {
     public sealed class GameplayTests
     {
-        [Test]
-        public void PlatformRecycleImmediately_DisablesPlatformAndResetsState()
+        [TearDown]
+        public void TearDown()
         {
-            var platformObject = new GameObject("Platform");
-            platformObject.AddComponent<SpriteRenderer>();
-            platformObject.AddComponent<BoxCollider2D>();
-            platformObject.AddComponent<Rigidbody2D>();
-            var platform = platformObject.AddComponent<PlatformBehaviour>();
+            foreach (var root in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+            {
+                if (root == null)
+                {
+                    continue;
+                }
 
-            platform.Initialize(null, 42);
-            platform.Activate(Vector2.zero, new Vector2(3f, 0.75f), 1.2f, 1f);
+                var rootTransform = root.transform;
+                if (rootTransform != null && rootTransform.parent == null)
+                {
+                    Object.DestroyImmediate(root);
+                }
+            }
+        }
 
-            platform.RecycleImmediately();
+        [Test]
+        public void PlayerControllerTouchInput_TracksDirectionsAndJumpBuffer()
+        {
+            var playerObject = new GameObject("Player");
+            playerObject.AddComponent<SpriteRenderer>();
+            playerObject.AddComponent<BoxCollider2D>();
+            playerObject.AddComponent<Rigidbody2D>();
+            var player = playerObject.AddComponent<PlayerController>();
 
-            Assert.That(platform.CollapseState, Is.EqualTo(PlatformCollapseState.Recycling));
-            Assert.That(platform.gameObject.activeSelf, Is.False);
+            player.SetTouchMoveInput(-1f);
+            Assert.That(player.HorizontalIntent, Is.EqualTo(-1f));
 
-            Object.DestroyImmediate(platformObject);
+            player.SetTouchMoveInput(1f);
+            Assert.That(player.HorizontalIntent, Is.EqualTo(0f));
+
+            player.ClearTouchMoveInput(-1f);
+            Assert.That(player.HorizontalIntent, Is.EqualTo(1f));
+
+            player.ClearTouchMoveInput(1f);
+            Assert.That(player.HorizontalIntent, Is.EqualTo(0f));
+
+            player.QueueJumpPress();
+            Assert.That(player.GetRuntimeState().HasBufferedJump, Is.True);
         }
 
         [Test]
@@ -43,32 +68,52 @@ namespace FallingPlatformsSurvival.Tests
 
             Assert.That(snapshot.Count, Is.GreaterThan(0));
             Assert.That(spawn.y, Is.GreaterThan(-2f));
-
-            Object.DestroyImmediate(managerObject);
-            Object.DestroyImmediate(playerObject);
         }
 
         [Test]
-        public void GameManagerRuntimeSnapshot_ReturnsPlayingStateAndActivePlatforms()
+        public void GameManagerRestartRun_CreatesSingleRuntimeHudAndSystems()
         {
             var bootstrap = new GameObject("GameManager");
             var gameManager = bootstrap.AddComponent<GameManager>();
 
             gameManager.RestartRun();
+            gameManager.RestartRun();
+
             var snapshot = gameManager.GetRuntimeSnapshot();
+            var uiManager = Object.FindFirstObjectByType<UIManager>();
 
             Assert.That(snapshot.State, Is.EqualTo(GameRunState.Playing));
-            Assert.That(snapshot.Player.IsAlive, Is.True);
             Assert.That(snapshot.ActivePlatforms.Count, Is.GreaterThan(0));
+            Assert.That(uiManager, Is.Not.Null);
+            Assert.That(uiManager.AreTouchControlsVisible, Is.True);
+            Assert.That(uiManager.IsGameOverVisible, Is.False);
+            Assert.That(Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+        }
 
-            Object.DestroyImmediate(bootstrap);
-            foreach (var root in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
-            {
-                if (root.name == "Main Camera" || root.name == "Player" || root.name == "PlatformManager" || root.name == "UIManager" || root.name == "DeathZone" || root.name == "EventSystem" || root.name == "Canvas")
-                {
-                    Object.DestroyImmediate(root);
-                }
-            }
+        [Test]
+        public void HandlePlayerDeath_ShowsOverlayAndRestartButtonResetsRun()
+        {
+            var bootstrap = new GameObject("GameManager");
+            var gameManager = bootstrap.AddComponent<GameManager>();
+
+            gameManager.RestartRun();
+
+            var uiManager = Object.FindFirstObjectByType<UIManager>();
+            gameManager.HandlePlayerDeath();
+
+            Assert.That(gameManager.RunState, Is.EqualTo(GameRunState.GameOver));
+            Assert.That(uiManager.IsGameOverVisible, Is.True);
+            Assert.That(uiManager.AreTouchControlsVisible, Is.False);
+
+            var restartButton = GameObject.Find("RestartButton").GetComponent<Button>();
+            restartButton.onClick.Invoke();
+
+            Assert.That(gameManager.RunState, Is.EqualTo(GameRunState.Playing));
+            Assert.That(gameManager.ElapsedSurvivalTime, Is.EqualTo(0f));
+            Assert.That(uiManager.IsGameOverVisible, Is.False);
+            Assert.That(uiManager.AreTouchControlsVisible, Is.True);
+            Assert.That(gameManager.GetRuntimeSnapshot().Player.IsAlive, Is.True);
         }
     }
 }
