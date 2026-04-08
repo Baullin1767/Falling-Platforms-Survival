@@ -1,18 +1,19 @@
 {
-  "name": "FallingPlatformsSurvival",
-  "rootNamespace": "FallingPlatformsSurvival",
-  "references": [
-    "Unity.InputSystem",
-    "Unity.InputSystem.ForUI",
-    "UnityEngine.UI"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": false,
-  "precompiledReferences": [],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "FallingPlatformsSurvival",
+    "rootNamespace": "FallingPlatformsSurvival",
+    "references": [
+        "Unity.InputSystem",
+        "Unity.InputSystem.ForUI",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

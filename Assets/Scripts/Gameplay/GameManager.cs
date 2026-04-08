@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace FallingPlatformsSurvival
 {
     public sealed class GameManager : MonoBehaviour
     {
+        [Header("Scene References")]
+        [SerializeField] private PlatformManager platformManager;
+        [SerializeField] private UIManager uiManager;
+        [SerializeField] private CameraFollow2D cameraFollow;
+        [SerializeField] private DeathZoneFollower deathZoneFollower;
+        [SerializeField] private InfiniteVerticalBackground _infiniteVerticalBackground;
+
+        [Header("Runtime Prefabs")]
+        [SerializeField] private GameObject playerPrefab;
+
         private PlayerController playerController;
-        private PlatformManager platformManager;
-        private UIManager uiManager;
-        private CameraFollow2D cameraFollow;
-        private DeathZoneFollower deathZoneFollower;
         private InputAction submitAction;
 
         private GameRunState runState = GameRunState.Waiting;
@@ -20,7 +27,8 @@ namespace FallingPlatformsSurvival
 
         private void Awake()
         {
-            EnsureScene();
+            Time.timeScale = 1f;
+            ValidateConfiguration();
         }
 
         private void OnEnable()
@@ -60,7 +68,8 @@ namespace FallingPlatformsSurvival
 
         public void RestartRun()
         {
-            EnsureScene();
+            ValidateConfiguration();
+            EnsurePlayerInstance();
 
             runState = GameRunState.Waiting;
             elapsedSurvivalTime = 0f;
@@ -82,6 +91,12 @@ namespace FallingPlatformsSurvival
             uiManager.ShowGameplay(elapsedSurvivalTime);
 
             runState = GameRunState.Playing;
+            _infiniteVerticalBackground.ResetBG();
+
+            if (Time.timeScale <= 0)
+            {
+                Resume();
+            }
         }
 
         public void HandlePlayerDeath()
@@ -106,79 +121,76 @@ namespace FallingPlatformsSurvival
                 platformManager.GetActivePlatformStates(playerController.CurrentPlatform));
         }
 
-        private void EnsureScene()
+        private void EnsurePlayerInstance()
         {
-            EnsureCamera();
+            if (playerController != null)
+            {
+                return;
+            }
 
-            playerController = FindFirstObjectByType<PlayerController>();
+            var spawnedPlayer = Instantiate(playerPrefab);
+            spawnedPlayer.name = playerPrefab.name;
+            playerController = spawnedPlayer.GetComponent<PlayerController>();
             if (playerController == null)
             {
-                playerController = CreatePlayer();
+                throw new MissingComponentException("Player prefab must include a PlayerController component.");
             }
+        }
 
-            platformManager = FindFirstObjectByType<PlatformManager>();
+        private void ValidateConfiguration()
+        {
             if (platformManager == null)
             {
-                var platformManagerObject = new GameObject("PlatformManager");
-                platformManagerObject.transform.SetParent(transform, false);
-                platformManager = platformManagerObject.AddComponent<PlatformManager>();
+                throw new MissingReferenceException("GameManager requires a PlatformManager scene reference.");
             }
 
-            uiManager = FindFirstObjectByType<UIManager>();
             if (uiManager == null)
             {
-                var uiManagerObject = new GameObject("UIManager");
-                uiManagerObject.transform.SetParent(transform, false);
-                uiManager = uiManagerObject.AddComponent<UIManager>();
+                throw new MissingReferenceException("GameManager requires a UIManager scene reference.");
             }
 
-            deathZoneFollower = FindFirstObjectByType<DeathZoneFollower>();
-            if (deathZoneFollower == null)
-            {
-                var deathZoneObject = new GameObject("DeathZone");
-                deathZoneObject.transform.SetParent(transform, false);
-                deathZoneObject.AddComponent<BoxCollider2D>();
-                deathZoneFollower = deathZoneObject.AddComponent<DeathZoneFollower>();
-            }
-        }
-
-        private void EnsureCamera()
-        {
-            var mainCamera = Camera.main;
-            if (mainCamera == null)
-            {
-                var cameraObject = new GameObject("Main Camera");
-                cameraObject.tag = "MainCamera";
-                mainCamera = cameraObject.AddComponent<Camera>();
-                cameraObject.AddComponent<AudioListener>();
-                cameraObject.transform.position = new Vector3(0f, 1f, -10f);
-            }
-
-            mainCamera.orthographic = true;
-            mainCamera.orthographicSize = 7.5f;
-            mainCamera.backgroundColor = new Color(0.11f, 0.13f, 0.18f, 1f);
-            cameraFollow = mainCamera.GetComponent<CameraFollow2D>();
             if (cameraFollow == null)
             {
-                cameraFollow = mainCamera.gameObject.AddComponent<CameraFollow2D>();
+                throw new MissingReferenceException("GameManager requires a CameraFollow2D scene reference.");
             }
-        }
 
-        private PlayerController CreatePlayer()
-        {
-            var playerObject = new GameObject("Player");
-            playerObject.transform.SetParent(transform, false);
-            playerObject.transform.position = new Vector3(0f, -1.5f, 0f);
-            playerObject.AddComponent<SpriteRenderer>();
-            playerObject.AddComponent<BoxCollider2D>();
-            playerObject.AddComponent<Rigidbody2D>();
-            return playerObject.AddComponent<PlayerController>();
+            if (deathZoneFollower == null)
+            {
+                throw new MissingReferenceException("GameManager requires a DeathZoneFollower scene reference.");
+            }
+
+            if (playerPrefab == null)
+            {
+                throw new MissingReferenceException("GameManager requires a Player prefab reference.");
+            }
+
+            if (playerPrefab.GetComponent<PlayerController>() == null)
+            {
+                throw new MissingComponentException("GameManager player prefab reference must point to a prefab with PlayerController.");
+            }
         }
 
         private bool IsRestartPressedThisFrame()
         {
             return (submitAction != null && submitAction.WasPressedThisFrame())
                 || Keyboard.current != null && Keyboard.current.rKey.wasPressedThisFrame;
+        }
+
+        public void GoMainMenu()
+        {
+            SceneManager.LoadScene("MainMenuScene");
+        }
+
+        public void Pause()
+        {
+            Time.timeScale = 0f;
+            uiManager.ShowPause();
+        }
+
+        public void Resume()
+        {
+            Time.timeScale = 1f;
+            uiManager.HidePause();
         }
     }
 }

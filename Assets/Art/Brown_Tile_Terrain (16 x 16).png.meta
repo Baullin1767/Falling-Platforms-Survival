@@ -1,0 +1,1534 @@
+fileFormatVersion: 2
+guid: 619093157e71ddb428f4e44a979fae64
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5410561921614034885
+    second: Brown_Tile_Terrain (16 x 16)_0
+  - first:
+      213: 1775072125371998204
+    second: Brown_Tile_Terrain (16 x 16)_1
+  - first:
+      213: 1536917300950452824
+    second: Brown_Tile_Terrain (16 x 16)_2
+  - first:
+      213: 5774735870751019703
+    second: Brown_Tile_Terrain (16 x 16)_3
+  - first:
+      213: 4352762884744963535
+    second: Brown_Tile_Terrain (16 x 16)_4
+  - first:
+      213: -3896686193872209188
+    second: Brown_Tile_Terrain (16 x 16)_5
+  - first:
+      213: 7711189090489722536
+    second: Brown_Tile_Terrain (16 x 16)_6
+  - first:
+      213: 2468323815925284661
+    second: Brown_Tile_Terrain (16 x 16)_7
+  - first:
+      213: 4748698527204035095
+    second: Brown_Tile_Terrain (16 x 16)_8
+  - first:
+      213: 1942250282309980737
+    second: Brown_Tile_Terrain (16 x 16)_9
+  - first:
+      213: -6941529199403462396
+    second: Brown_Tile_Terrain (16 x 16)_10
+  - first:
+      213: -7303821974050881731
+    second: Brown_Tile_Terrain (16 x 16)_11
+  - first:
+      213: 5091850643920947878
+    second: Brown_Tile_Terrain (16 x 16)_12
+  - first:
+      213: -2321524080095634424
+    second: Brown_Tile_Terrain (16 x 16)_13
+  - first:
+      213: -2346062370593947210
+    second: Brown_Tile_Terrain (16 x 16)_14
+  - first:
+      213: -4900981276944410654
+    second: Brown_Tile_Terrain (16 x 16)_15
+  - first:
+      213: -3720016111655952622
+    second: Brown_Tile_Terrain (16 x 16)_16
+  - first:
+      213: 741473820600313106
+    second: Brown_Tile_Terrain (16 x 16)_17
+  - first:
+      213: -2270287154241304291
+    second: Brown_Tile_Terrain (16 x 16)_18
+  - first:
+      213: -7700188753435000853
+    second: Brown_Tile_Terrain (16 x 16)_19
+  - first:
+      213: -5008873418054358540
+    second: Brown_Tile_Terrain (16 x 16)_20
+  - first:
+      213: 1344629808828469230
+    second: Brown_Tile_Terrain (16 x 16)_21
+  - first:
+      213: 355148551170358989
+    second: Brown_Tile_Terrain (16 x 16)_22
+  - first:
+      213: 1539204310566521880
+    second: Brown_Tile_Terrain (16 x 16)_23
+  - first:
+      213: 6407272997838984723
+    second: Brown_Tile_Terrain (16 x 16)_24
+  - first:
+      213: -6389492714533542399
+    second: Brown_Tile_Terrain (16 x 16)_25
+  - first:
+      213: 5656257590905346887
+    second: Brown_Tile_Terrain (16 x 16)_26
+  - first:
+      213: 378521212159182920
+    second: Brown_Tile_Terrain (16 x 16)_27
+  - first:
+      213: -9186632066345089202
+    second: Brown_Tile_Terrain (16 x 16)_28
+  - first:
+      213: -8626697162080832583
+    second: Brown_Tile_Terrain (16 x 16)_29
+  - first:
+      213: -4723819470026479459
+    second: Brown_Tile_Terrain (16 x 16)_30
+  - first:
+      213: -8115379459553022216
+    second: Brown_Tile_Terrain (16 x 16)_31
+  - first:
+      213: -6233260298960558232
+    second: Brown_Tile_Terrain (16 x 16)_32
+  - first:
+      213: -4894052708963116531
+    second: Brown_Tile_Terrain (16 x 16)_33
+  - first:
+      213: 8666969863377950283
+    second: Brown_Tile_Terrain (16 x 16)_34
+  - first:
+      213: -6039211300796747893
+    second: Brown_Tile_Terrain (16 x 16)_35
+  - first:
+      213: 2018912303594656772
+    second: Brown_Tile_Terrain (16 x 16)_36
+  - first:
+      213: -163134444664874650
+    second: Brown_Tile_Terrain (16 x 16)_37
+  - first:
+      213: 2949969702503724270
+    second: Brown_Tile_Terrain (16 x 16)_38
+  - first:
+      213: 7382540201322848265
+    second: Brown_Tile_Terrain (16 x 16)_39
+  - first:
+      213: -6702843117387962697
+    second: Brown_Tile_Terrain (16 x 16)_40
+  - first:
+      213: -1944589845520275088
+    second: Brown_Tile_Terrain (16 x 16)_41
+  - first:
+      213: 2735112042433879654
+    second: Brown_Tile_Terrain (16 x 16)_42
+  - first:
+      213: 8488785989352040039
+    second: Brown_Tile_Terrain (16 x 16)_43
+  - first:
+      213: 5976076481694639006
+    second: Brown_Tile_Terrain (16 x 16)_44
+  - first:
+      213: 7451706341514808080
+    second: Brown_Tile_Terrain (16 x 16)_45
+  - first:
+      213: -2767473345382082074
+    second: Brown_Tile_Terrain (16 x 16)_46
+  - first:
+      213: -4819087965709412460
+    second: Brown_Tile_Terrain (16 x 16)_47
+  - first:
+      213: 4932323185892227519
+    second: Brown_Tile_Terrain (16 x 16)_48
+  - first:
+      213: 4289232498253487952
+    second: Brown_Tile_Terrain (16 x 16)_49
+  - first:
+      213: -38863798526092369
+    second: Brown_Tile_Terrain (16 x 16)_50
+  - first:
+      213: -2050052922522487055
+    second: Brown_Tile_Terrain (16 x 16)_51
+  - first:
+      213: -364365429097191328
+    second: Brown_Tile_Terrain (16 x 16)_52
+  - first:
+      213: 2576951771525139350
+    second: Brown_Tile_Terrain (16 x 16)_53
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 324
+        width: 34
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c73f0db66d261b40800000000000000
+      internalID: 5410561921614034885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 326
+        width: 18
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cffde7b71b252a810800000000000000
+      internalID: 1775072125371998204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_2
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 287
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85acd4c642a345510800000000000000
+      internalID: 1536917300950452824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 207
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b212d7bdabf32050800000000000000
+      internalID: 5774735870751019703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 287
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc56ab028ce186c30800000000000000
+      internalID: 4352762884744963535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_5
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 207
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdaf31d5d803ce9c0800000000000000
+      internalID: -3896686193872209188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_6
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 287
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a6e1864f95a30b60800000000000000
+      internalID: 7711189090489722536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_7
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 207
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53ffcdece6f314220800000000000000
+      internalID: 2468323815925284661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_8
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 287
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71aca6b9624c6e140800000000000000
+      internalID: 4748698527204035095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_9
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 207
+        width: 98
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1421dfd575244fa10800000000000000
+      internalID: 1942250282309980737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_10
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 159
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4011e8f88fbbaaf90800000000000000
+      internalID: -6941529199403462396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_11
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 159
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3f3106ac9c93aa90800000000000000
+      internalID: -7303821974050881731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_12
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 159
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa8040de23e9a640800000000000000
+      internalID: 5091850643920947878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_13
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 159
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80c526c262a48cfd0800000000000000
+      internalID: -2321524080095634424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_14
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 159
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b146d334bc117fd0800000000000000
+      internalID: -2346062370593947210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_15
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 159
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e753e0ce773cfbb0800000000000000
+      internalID: -4900981276944410654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_16
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 159
+        width: 50
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f54025e09df5cc0800000000000000
+      internalID: -3720016111655952622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_17
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 159
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2152227e28e3a4a00800000000000000
+      internalID: 741473820600313106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_18
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 95
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1980599cd15e70e0800000000000000
+      internalID: -2270287154241304291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_19
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bef7c08402f632590800000000000000
+      internalID: -7700188753435000853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_20
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 95
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f929f71a28ec7ab0800000000000000
+      internalID: -5008873418054358540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_21
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eef4f9ddfa519a210800000000000000
+      internalID: 1344629808828469230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_22
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 95
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcef003c9bdbde400800000000000000
+      internalID: 355148551170358989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_23
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c41185a2a5c5510800000000000000
+      internalID: 1539204310566521880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_24
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 95
+        width: 18
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316152728d43be850800000000000000
+      internalID: 6407272997838984723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_25
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 111
+        width: 34
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1062847aa36f357a0800000000000000
+      internalID: -6389492714533542399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_26
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74b15009f401f7e40800000000000000
+      internalID: 5656257590905346887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_27
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 848c2b67907c04500800000000000000
+      internalID: 378521212159182920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_28
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e47c94bfec6828080800000000000000
+      internalID: -9186632066345089202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_29
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b33d4523a0d74880800000000000000
+      internalID: -8626697162080832583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_30
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d986ff9483f917eb0800000000000000
+      internalID: -4723819470026479459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_31
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fe27dfe061606f80800000000000000
+      internalID: -8115379459553022216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_32
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86729e788c20f79a0800000000000000
+      internalID: -6233260298960558232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_33
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 79
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0a1732bdf4d41cb0800000000000000
+      internalID: -4894052708963116531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_34
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4698a1db23474870800000000000000
+      internalID: 8666969863377950283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_35
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8f2c7ca159603ca0800000000000000
+      internalID: -6039211300796747893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_36
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 404dc602b0e940c10800000000000000
+      internalID: 2018912303594656772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_37
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6699e1f361e6cbdf0800000000000000
+      internalID: -163134444664874650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_38
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee436e790d560f820800000000000000
+      internalID: 2949969702503724270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_39
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 900a3efd23d047660800000000000000
+      internalID: 7382540201322848265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_40
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b62beaa2b7baf2a0800000000000000
+      internalID: -6702843117387962697
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_41
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 079aeef96dd6305e0800000000000000
+      internalID: -1944589845520275088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_42
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66e1a2e49e115f520800000000000000
+      internalID: 2735112042433879654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_43
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76624adb1e93ec570800000000000000
+      internalID: 8488785989352040039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_44
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e93a9f1c5e94fe250800000000000000
+      internalID: 5976076481694639006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_45
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 47
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01b0480df67c96760800000000000000
+      internalID: 7451706341514808080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_46
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e99323b7a5f799d0800000000000000
+      internalID: -2767473345382082074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_47
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497d78e17092f1db0800000000000000
+      internalID: -4819087965709412460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_48
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb977841ec1237440800000000000000
+      internalID: 4932323185892227519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_49
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05fd5795b3a668b30800000000000000
+      internalID: 4289232498253487952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_50
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabda36c49de57ff0800000000000000
+      internalID: -38863798526092369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_51
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f6bb468abfbc83e0800000000000000
+      internalID: -2050052922522487055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_52
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 068aa3e929381faf0800000000000000
+      internalID: -364365429097191328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brown_Tile_Terrain (16 x 16)_53
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 15
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69bc111abfb23c320800000000000000
+      internalID: 2576951771525139350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Brown_Tile_Terrain (16 x 16)_0: 5410561921614034885
+      Brown_Tile_Terrain (16 x 16)_1: 1775072125371998204
+      Brown_Tile_Terrain (16 x 16)_10: -6941529199403462396
+      Brown_Tile_Terrain (16 x 16)_11: -7303821974050881731
+      Brown_Tile_Terrain (16 x 16)_12: 5091850643920947878
+      Brown_Tile_Terrain (16 x 16)_13: -2321524080095634424
+      Brown_Tile_Terrain (16 x 16)_14: -2346062370593947210
+      Brown_Tile_Terrain (16 x 16)_15: -4900981276944410654
+      Brown_Tile_Terrain (16 x 16)_16: -3720016111655952622
+      Brown_Tile_Terrain (16 x 16)_17: 741473820600313106
+      Brown_Tile_Terrain (16 x 16)_18: -2270287154241304291
+      Brown_Tile_Terrain (16 x 16)_19: -7700188753435000853
+      Brown_Tile_Terrain (16 x 16)_2: 1536917300950452824
+      Brown_Tile_Terrain (16 x 16)_20: -5008873418054358540
+      Brown_Tile_Terrain (16 x 16)_21: 1344629808828469230
+      Brown_Tile_Terrain (16 x 16)_22: 355148551170358989
+      Brown_Tile_Terrain (16 x 16)_23: 1539204310566521880
+      Brown_Tile_Terrain (16 x 16)_24: 6407272997838984723
+      Brown_Tile_Terrain (16 x 16)_25: -6389492714533542399
+      Brown_Tile_Terrain (16 x 16)_26: 5656257590905346887
+      Brown_Tile_Terrain (16 x 16)_27: 378521212159182920
+      Brown_Tile_Terrain (16 x 16)_28: -9186632066345089202
+      Brown_Tile_Terrain (16 x 16)_29: -8626697162080832583
+      Brown_Tile_Terrain (16 x 16)_3: 5774735870751019703
+      Brown_Tile_Terrain (16 x 16)_30: -4723819470026479459
+      Brown_Tile_Terrain (16 x 16)_31: -8115379459553022216
+      Brown_Tile_Terrain (16 x 16)_32: -6233260298960558232
+      Brown_Tile_Terrain (16 x 16)_33: -4894052708963116531
+      Brown_Tile_Terrain (16 x 16)_34: 8666969863377950283
+      Brown_Tile_Terrain (16 x 16)_35: -6039211300796747893
+      Brown_Tile_Terrain (16 x 16)_36: 2018912303594656772
+      Brown_Tile_Terrain (16 x 16)_37: -163134444664874650
+      Brown_Tile_Terrain (16 x 16)_38: 2949969702503724270
+      Brown_Tile_Terrain (16 x 16)_39: 7382540201322848265
+      Brown_Tile_Terrain (16 x 16)_4: 4352762884744963535
+      Brown_Tile_Terrain (16 x 16)_40: -6702843117387962697
+      Brown_Tile_Terrain (16 x 16)_41: -1944589845520275088
+      Brown_Tile_Terrain (16 x 16)_42: 2735112042433879654
+      Brown_Tile_Terrain (16 x 16)_43: 8488785989352040039
+      Brown_Tile_Terrain (16 x 16)_44: 5976076481694639006
+      Brown_Tile_Terrain (16 x 16)_45: 7451706341514808080
+      Brown_Tile_Terrain (16 x 16)_46: -2767473345382082074
+      Brown_Tile_Terrain (16 x 16)_47: -4819087965709412460
+      Brown_Tile_Terrain (16 x 16)_48: 4932323185892227519
+      Brown_Tile_Terrain (16 x 16)_49: 4289232498253487952
+      Brown_Tile_Terrain (16 x 16)_5: -3896686193872209188
+      Brown_Tile_Terrain (16 x 16)_50: -38863798526092369
+      Brown_Tile_Terrain (16 x 16)_51: -2050052922522487055
+      Brown_Tile_Terrain (16 x 16)_52: -364365429097191328
+      Brown_Tile_Terrain (16 x 16)_53: 2576951771525139350
+      Brown_Tile_Terrain (16 x 16)_6: 7711189090489722536
+      Brown_Tile_Terrain (16 x 16)_7: 2468323815925284661
+      Brown_Tile_Terrain (16 x 16)_8: 4748698527204035095
+      Brown_Tile_Terrain (16 x 16)_9: 1942250282309980737
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

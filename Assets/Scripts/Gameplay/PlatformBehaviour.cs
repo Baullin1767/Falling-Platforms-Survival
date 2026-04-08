@@ -174,8 +174,7 @@ namespace FallingPlatformsSurvival
             boxCollider = GetComponent<BoxCollider2D>();
             body = GetComponent<Rigidbody2D>();
 
-            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
-            boxCollider.size = Vector2.one;
+            // boxCollider.size = Vector2.one;
             body.bodyType = RigidbodyType2D.Kinematic;
             body.gravityScale = 0f;
             body.freezeRotation = false;

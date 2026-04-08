@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,22 +9,20 @@ namespace FallingPlatformsSurvival.Tests
 {
     public sealed class GameplayTests
     {
+        private const string ScenePath = "Assets/Scenes/SampleScene.unity";
+        private const string PlayerPrefabPath = "Assets/Prefabs/Player.prefab";
+        private const string PlatformPrefabPath = "Assets/Prefabs/Platform.prefab";
+
+        [SetUp]
+        public void SetUp()
+        {
+            EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+        }
+
         [TearDown]
         public void TearDown()
         {
-            foreach (var root in Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
-            {
-                if (root == null)
-                {
-                    continue;
-                }
-
-                var rootTransform = root.transform;
-                if (rootTransform != null && rootTransform.parent == null)
-                {
-                    Object.DestroyImmediate(root);
-                }
-            }
+            EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
         }
 
         [Test]
@@ -51,55 +51,77 @@ namespace FallingPlatformsSurvival.Tests
         }
 
         [Test]
-        public void PlatformManagerResetPlatforms_CreatesActivePlatformSnapshot()
+        public void PlatformManagerResetPlatforms_UsesPrefabPool()
         {
-            var managerObject = new GameObject("PlatformManager");
-            var manager = managerObject.AddComponent<PlatformManager>();
+            var platformManager = FindRequired<PlatformManager>();
+            var playerPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(PlayerPrefabPath);
+            var player = Object.Instantiate(playerPrefab).GetComponent<PlayerController>();
+            var platformManagerSerializedObject = new SerializedObject(platformManager);
 
-            var playerObject = new GameObject("Player");
-            playerObject.AddComponent<SpriteRenderer>();
-            playerObject.AddComponent<BoxCollider2D>();
-            playerObject.AddComponent<Rigidbody2D>();
-            var player = playerObject.AddComponent<PlayerController>();
+            platformManager.SetPlayer(player);
+            var spawn = platformManager.ResetPlatforms();
+            var snapshot = platformManager.GetActivePlatformStates(null);
+            var platforms = Object.FindObjectsByType<PlatformBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-            manager.SetPlayer(player);
-            var spawn = manager.ResetPlatforms();
-            var snapshot = manager.GetActivePlatformStates(null);
-
+            Assert.That(platformManagerSerializedObject.FindProperty("platformPrefab").objectReferenceValue, Is.Not.Null);
             Assert.That(snapshot.Count, Is.GreaterThan(0));
             Assert.That(spawn.y, Is.GreaterThan(-2f));
+            Assert.That(platforms.Length, Is.GreaterThanOrEqualTo(snapshot.Count));
+            Assert.That(AssetDatabase.GetAssetPath(platformManagerSerializedObject.FindProperty("platformPrefab").objectReferenceValue), Is.EqualTo(PlatformPrefabPath));
         }
 
         [Test]
-        public void GameManagerRestartRun_CreatesSingleRuntimeHudAndSystems()
+        public void GameManagerRestartRun_UsesConfiguredSceneSystemsWithoutDuplicates()
         {
-            var bootstrap = new GameObject("GameManager");
-            var gameManager = bootstrap.AddComponent<GameManager>();
+            var gameManager = FindRequired<GameManager>();
 
             gameManager.RestartRun();
             gameManager.RestartRun();
 
             var snapshot = gameManager.GetRuntimeSnapshot();
-            var uiManager = Object.FindFirstObjectByType<UIManager>();
+            var uiManager = FindRequired<UIManager>();
+            var player = FindRequired<PlayerController>();
 
             Assert.That(snapshot.State, Is.EqualTo(GameRunState.Playing));
             Assert.That(snapshot.ActivePlatforms.Count, Is.GreaterThan(0));
-            Assert.That(uiManager, Is.Not.Null);
             Assert.That(uiManager.AreTouchControlsVisible, Is.True);
             Assert.That(uiManager.IsGameOverVisible, Is.False);
             Assert.That(Object.FindObjectsByType<Canvas>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
             Assert.That(Object.FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<DeathZoneFollower>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<PlatformManager>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<UIManager>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+
+            var gameManagerSerializedObject = new SerializedObject(gameManager);
+            Assert.That(AssetDatabase.GetAssetPath(gameManagerSerializedObject.FindProperty("playerPrefab").objectReferenceValue), Is.EqualTo(PlayerPrefabPath));
+        }
+
+        [Test]
+        public void RestartRun_InstantiatesPlayerPrefabOnceAndReusesIt()
+        {
+            var gameManager = FindRequired<GameManager>();
+
+            Assert.That(Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None).Length, Is.EqualTo(0));
+
+            gameManager.RestartRun();
+            var firstPlayer = FindRequired<PlayerController>();
+
+            gameManager.RestartRun();
+            var secondPlayer = FindRequired<PlayerController>();
+
+            Assert.That(Object.FindObjectsByType<PlayerController>(FindObjectsSortMode.None).Length, Is.EqualTo(1));
+            Assert.That(secondPlayer, Is.SameAs(firstPlayer));
         }
 
         [Test]
         public void HandlePlayerDeath_ShowsOverlayAndRestartButtonResetsRun()
         {
-            var bootstrap = new GameObject("GameManager");
-            var gameManager = bootstrap.AddComponent<GameManager>();
+            var gameManager = FindRequired<GameManager>();
 
             gameManager.RestartRun();
 
-            var uiManager = Object.FindFirstObjectByType<UIManager>();
+            var uiManager = FindRequired<UIManager>();
             gameManager.HandlePlayerDeath();
 
             Assert.That(gameManager.RunState, Is.EqualTo(GameRunState.GameOver));
@@ -114,6 +136,13 @@ namespace FallingPlatformsSurvival.Tests
             Assert.That(uiManager.IsGameOverVisible, Is.False);
             Assert.That(uiManager.AreTouchControlsVisible, Is.True);
             Assert.That(gameManager.GetRuntimeSnapshot().Player.IsAlive, Is.True);
+        }
+
+        private static T FindRequired<T>() where T : Object
+        {
+            var instance = Object.FindFirstObjectByType<T>();
+            Assert.That(instance, Is.Not.Null);
+            return instance;
         }
     }
 }

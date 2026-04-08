@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 namespace FallingPlatformsSurvival
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(CapsuleCollider2D))]
     [RequireComponent(typeof(SpriteRenderer))]
     public sealed class PlayerController : MonoBehaviour
     {
@@ -13,19 +13,17 @@ namespace FallingPlatformsSurvival
         [SerializeField] private float jumpForce = 14f;
         [SerializeField] private float coyoteTimeSeconds = 0.12f;
         [SerializeField] private float jumpBufferSeconds = 0.14f;
-        [SerializeField] private float groundCheckDistance = 0.12f;
+        [SerializeField] private float groundCheckDistance = 0.04f;
 
-        [Header("Visuals")]
-        [SerializeField] private Color playerColor = new(0.22f, 0.85f, 0.45f, 1f);
-        [SerializeField] private Color deadColor = new(0.45f, 0.2f, 0.2f, 1f);
-        [SerializeField] private Vector2 playerSize = new(0.9f, 1.25f);
+        [Header("Visuals")] 
+        [SerializeField] private Animator animator;
 
         private readonly RaycastHit2D[] groundHits = new RaycastHit2D[8];
         private readonly ContactFilter2D groundFilter = new() { useTriggers = false };
 
         private bool initialized;
         private Rigidbody2D body;
-        private BoxCollider2D boxCollider;
+        private CapsuleCollider2D boxCollider;
         private SpriteRenderer spriteRenderer;
         private InputAction moveAction;
         private InputAction jumpAction;
@@ -114,6 +112,7 @@ namespace FallingPlatformsSurvival
                 CurrentPlatform = null;
                 lastGroundedTime = float.NegativeInfinity;
                 lastJumpPressedTime = float.NegativeInfinity;
+                animator.SetTrigger("Jump");
             }
         }
 
@@ -129,7 +128,6 @@ namespace FallingPlatformsSurvival
             body.linearVelocity = Vector2.zero;
             body.angularVelocity = 0f;
 
-            spriteRenderer.color = playerColor;
             isAlive = true;
             isGrounded = false;
             CurrentPlatform = null;
@@ -156,7 +154,6 @@ namespace FallingPlatformsSurvival
             body.linearVelocity = Vector2.zero;
             body.angularVelocity = 0f;
             body.simulated = false;
-            spriteRenderer.color = deadColor;
         }
 
         public void SetTouchMoveInput(float direction)
@@ -274,18 +271,14 @@ namespace FallingPlatformsSurvival
             }
 
             body = GetComponent<Rigidbody2D>();
-            boxCollider = GetComponent<BoxCollider2D>();
+            boxCollider = GetComponent<CapsuleCollider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
 
-            spriteRenderer.sprite = PlaceholderSpriteLibrary.SquareSprite;
-            spriteRenderer.color = playerColor;
 
-            boxCollider.size = playerSize;
             body.gravityScale = 4f;
             body.freezeRotation = true;
             body.interpolation = RigidbodyInterpolation2D.Interpolate;
 
-            transform.localScale = new Vector3(playerSize.x, playerSize.y, 1f);
             spawnPosition = transform.position;
             initialized = true;
         }

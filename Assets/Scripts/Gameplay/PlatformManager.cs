@@ -5,6 +5,9 @@ namespace FallingPlatformsSurvival
 {
     public sealed class PlatformManager : MonoBehaviour
     {
+        [Header("Prefabs")]
+        [SerializeField] private GameObject platformPrefab;
+
         [Header("Pool")]
         [SerializeField] private int poolSize = 24;
         [SerializeField] private int startingPlatformCount = 10;
@@ -120,15 +123,26 @@ namespace FallingPlatformsSurvival
                 return;
             }
 
+            if (platformPrefab == null)
+            {
+                throw new MissingReferenceException("PlatformManager requires a Platform prefab reference.");
+            }
+
+            if (platformPrefab.GetComponent<PlatformBehaviour>() == null)
+            {
+                throw new MissingComponentException("PlatformManager platform prefab reference must point to a prefab with PlatformBehaviour.");
+            }
+
             for (var i = allPlatforms.Count; i < poolSize; i++)
             {
-                var platformObject = new GameObject($"Platform_{i:D2}");
-                platformObject.transform.SetParent(transform, false);
+                var platformObject = Instantiate(platformPrefab, transform);
+                var behaviour = platformObject.GetComponent<PlatformBehaviour>();
+                if (behaviour == null)
+                {
+                    throw new MissingComponentException("Instantiated platform prefab does not contain PlatformBehaviour.");
+                }
 
-                platformObject.AddComponent<SpriteRenderer>();
-                platformObject.AddComponent<BoxCollider2D>();
-                platformObject.AddComponent<Rigidbody2D>();
-                var behaviour = platformObject.AddComponent<PlatformBehaviour>();
+                behaviour.gameObject.name = $"Platform_{i:D2}";
                 behaviour.Initialize(this, i);
                 behaviour.RecycleImmediately();
                 allPlatforms.Add(behaviour);

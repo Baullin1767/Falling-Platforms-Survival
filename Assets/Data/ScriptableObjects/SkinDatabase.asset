@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106f789de28c66e48b7e3696880e3b1e, type: 3}
+  m_Name: SkinDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::UIModule.Data.ScriptableObjects.SkinDatabaseSO
+  skins:
+  - id: default
+    displayName: Default
+    skinSprite: {fileID: 21300000, guid: 525bf95eaee125043bc748c8bec984e0, type: 3}
+    unlocked: 1
+  - id: red
+    displayName: Red
+    skinSprite: {fileID: 21300000, guid: 78802703af035804790c144135309bcf, type: 3}
+    unlocked: 1
+  - id: blue
+    displayName: Blue
+    skinSprite: {fileID: 21300000, guid: 94ad56f2578fb5f4d8b49b11fb6439a8, type: 3}
+    unlocked: 1
+  - id: neon
+    displayName: Neon
+    skinSprite: {fileID: 21300000, guid: d5c1c712818c5534fac9d0f876b1a39f, type: 3}
+    unlocked: 1
