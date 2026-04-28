@@ -1,3 +1,7 @@
-About
+<b>ABOUT</b>
 
-This is a modular mobile main menu sample built with a centralized windows manager, mock leaderboard data, and a ScriptableObject-driven skin selector.
+Falling Platforms Survival is a fast-paced survival game where every step matters.
+
+Stand on moving platforms that collapse after a short time and jump quickly to the next safe spot. The longer you survive, the faster the action becomes, testing your timing, focus, and reaction speed.
+
+Plan your jumps carefully, keep moving, and stay one step ahead of disappearing platforms. With simple controls and increasingly challenging gameplay, Falling Platforms Survival delivers an exciting test of reflexes and survival skills.

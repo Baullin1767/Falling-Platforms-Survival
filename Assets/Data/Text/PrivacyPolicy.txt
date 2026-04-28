@@ -1,3 +1,37 @@
-Privacy Policy
+Welcome to Falling Platforms Survival! While you focus on jumping between platforms and staying alive as long as possible, we focus on keeping your privacy safe.
 
-We store only the minimum local preferences needed to run this prototype, including your selected skin. No online personal data flow is implemented in this UI module.
+1. No Data Collection
+Falling Platforms Survival does not collect, store, or share any personal information.
+
+No personally identifiable information (PII) is collected
+No gameplay activity is tracked outside your device
+No IP addresses, device identifiers, or usage logs are stored
+
+2. No Ads or Tracking Systems
+The game is designed to provide a clean and focused survival experience.
+
+No advertisements are displayed
+No analytics or tracking tools are used
+No third-party services collect user data
+
+3. Safe for All Ages
+Because no data is collected, Falling Platforms Survival is safe for players of all ages, including children under 13.
+
+4. No Sensitive Permissions Required
+The game works without requesting access to private device features.
+
+No Camera or Microphone access
+No Contacts or Messages access
+No Location Services
+
+5. Local Data Storage Only
+All game-related data is saved directly on your device.
+
+Progress and high scores are stored locally
+No external servers or cloud storage
+Removing the app deletes stored data
+
+6. Policy Updates
+If this Privacy Policy is updated in the future, the core promise of protecting your privacy will remain unchanged.
+
+Last Updated: April 2026
