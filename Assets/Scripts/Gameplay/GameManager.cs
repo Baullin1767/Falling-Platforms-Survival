@@ -78,7 +78,7 @@ namespace FallingPlatformsSurvival
             platformManager.SetSimulationActive(true);
 
             var spawnPosition = platformManager.ResetPlatforms();
-            playerController.ResetForRun(spawnPosition);
+            playerController.ResetForRun(spawnPosition, platformManager.StartGroundCollider, HandlePlayerDeath);
 
             cameraFollow.SetTarget(playerController.transform);
             cameraFollow.SnapToTarget();

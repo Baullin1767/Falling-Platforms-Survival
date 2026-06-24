@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace FallingPlatformsSurvival
 {
-    [RequireComponent(typeof(SpriteRenderer))]
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class PlatformBehaviour : MonoBehaviour
@@ -12,13 +11,7 @@ namespace FallingPlatformsSurvival
         [SerializeField] private float vanishRecycleDelay = 0.12f;
         [SerializeField] private float fallAngularVelocity = 75f;
 
-        [Header("Visuals")]
-        [SerializeField] private Color idleColor = new(0.9f, 0.88f, 0.34f, 1f);
-        [SerializeField] private Color warningColor = new(1f, 0.49f, 0.18f, 1f);
-        [SerializeField] private Color fallingColor = new(0.85f, 0.28f, 0.22f, 1f);
-
         private PlatformManager manager;
-        private SpriteRenderer spriteRenderer;
         private BoxCollider2D boxCollider;
         private Rigidbody2D body;
         private bool initialized;
@@ -49,8 +42,6 @@ namespace FallingPlatformsSurvival
             if (CollapseState == PlatformCollapseState.Triggered && manager != null && manager.SimulationActive)
             {
                 countdownRemaining = Mathf.Max(0f, countdownRemaining - Time.deltaTime);
-                var lerp = collapseDelay <= Mathf.Epsilon ? 1f : 1f - (countdownRemaining / collapseDelay);
-                spriteRenderer.color = Color.Lerp(idleColor, warningColor, lerp);
 
                 if (countdownRemaining <= 0f)
                 {
@@ -89,8 +80,6 @@ namespace FallingPlatformsSurvival
             transform.rotation = Quaternion.identity;
             transform.localScale = new Vector3(scale.x, scale.y, 1f);
 
-            spriteRenderer.enabled = true;
-            spriteRenderer.color = idleColor;
             boxCollider.enabled = true;
 
             body.simulated = true;
@@ -150,13 +139,11 @@ namespace FallingPlatformsSurvival
             {
                 CollapseState = PlatformCollapseState.Vanished;
                 recycleTimer = vanishRecycleDelay;
-                spriteRenderer.enabled = false;
                 boxCollider.enabled = false;
                 return;
             }
 
             CollapseState = PlatformCollapseState.Falling;
-            spriteRenderer.color = fallingColor;
             body.bodyType = RigidbodyType2D.Dynamic;
             body.gravityScale = fallGravityScale;
             body.linearVelocity = new Vector2(Random.Range(-1f, 1f), -1f);
@@ -169,12 +156,10 @@ namespace FallingPlatformsSurvival
             {
                 return;
             }
-
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            
             boxCollider = GetComponent<BoxCollider2D>();
             body = GetComponent<Rigidbody2D>();
 
-            // boxCollider.size = Vector2.one;
             body.bodyType = RigidbodyType2D.Kinematic;
             body.gravityScale = 0f;
             body.freezeRotation = false;

@@ -7,6 +7,7 @@ namespace FallingPlatformsSurvival
     {
         [Header("Prefabs")]
         [SerializeField] private GameObject platformPrefab;
+        [SerializeField] private Collider2D startGround;
 
         [Header("Pool")]
         [SerializeField] private int poolSize = 24;
@@ -33,6 +34,7 @@ namespace FallingPlatformsSurvival
         private float lastSpawnX;
 
         public bool SimulationActive { get; private set; } = true;
+        public Collider2D StartGroundCollider => ResolveStartGroundCollider();
 
         private void Update()
         {
@@ -57,6 +59,7 @@ namespace FallingPlatformsSurvival
         public Vector2 ResetPlatforms()
         {
             EnsurePool();
+            var groundCollider = ResolveStartGroundCollider();
 
             for (var i = 0; i < allPlatforms.Count; i++)
             {
@@ -64,19 +67,16 @@ namespace FallingPlatformsSurvival
             }
 
             activePlatforms.Clear();
-            lastSpawnX = 0f;
+            var groundBounds = groundCollider.bounds;
+            lastSpawnX = groundBounds.center.x;
 
-            const float startPlatformY = -3f;
-            var startScale = new Vector2(5.5f, platformHeight);
-            SpawnPlatformAt(new Vector2(0f, startPlatformY), startScale, 1.9f);
-
-            nextSpawnY = startPlatformY + Random.Range(verticalSpacingRange.x, verticalSpacingRange.y);
-            for (var i = 1; i < startingPlatformCount; i++)
+            nextSpawnY = groundBounds.max.y + Random.Range(verticalSpacingRange.x, verticalSpacingRange.y);
+            for (var i = 0; i < startingPlatformCount; i++)
             {
                 SpawnProceduralPlatform();
             }
 
-            return new Vector2(0f, startPlatformY + 1.45f);
+            return new Vector2(groundBounds.center.x, groundBounds.max.y + 1.45f);
         }
 
         public void SetSimulationActive(bool isActive)
@@ -147,6 +147,23 @@ namespace FallingPlatformsSurvival
                 behaviour.RecycleImmediately();
                 allPlatforms.Add(behaviour);
             }
+        }
+
+        private Collider2D ResolveStartGroundCollider()
+        {
+            if (startGround != null)
+            {
+                return startGround;
+            }
+
+            var groundObject = GameObject.Find("Ground");
+            startGround = groundObject != null ? groundObject.GetComponent<Collider2D>() : null;
+            if (startGround == null)
+            {
+                throw new MissingReferenceException("PlatformManager requires a Ground scene object with a Collider2D.");
+            }
+
+            return startGround;
         }
 
         private void EnsurePlatformsAhead()
