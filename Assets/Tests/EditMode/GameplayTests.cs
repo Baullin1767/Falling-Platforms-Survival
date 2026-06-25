@@ -145,6 +145,32 @@ namespace FallingPlatformsSurvival.Tests
         }
 
         [Test]
+        public void MovingPlatform_UsesRailWayLengthAsTravelBounds()
+        {
+            var platformObject = CreatePlatformObject("MovingPlatform", false);
+            var platform = platformObject.GetComponent<PlatformBehaviour>();
+            var moving = platformObject.AddComponent<MovingPlatform>();
+
+            var railObject = new GameObject("railWay");
+            railObject.transform.SetParent(platformObject.transform, false);
+            var railRenderer = railObject.AddComponent<SpriteRenderer>();
+            var texture = new Texture2D(40, 4);
+            railRenderer.sprite = Sprite.Create(texture, new Rect(0f, 0f, 40f, 4f), new Vector2(0.5f, 0.5f), 10f);
+
+            var serializedObject = new SerializedObject(moving);
+            serializedObject.FindProperty("movementSpeed").floatValue = 100f;
+            serializedObject.FindProperty("startMovingRight").boolValue = true;
+            serializedObject.FindProperty("railWay").objectReferenceValue = railObject.transform;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+            platform.Activate(Vector2.zero, Vector2.one, 1.5f, 1f);
+            platformObject.SendMessage("FixedUpdate");
+
+            Assert.That(platformObject.transform.position.x, Is.EqualTo(1.5f).Within(0.001f));
+            Assert.That(railObject.transform.position.x, Is.EqualTo(0f).Within(0.001f));
+        }
+
+        [Test]
         public void GameManagerRestartRun_UsesConfiguredSceneSystemsWithoutDuplicates()
         {
             var gameManager = FindRequired<GameManager>();
@@ -219,9 +245,10 @@ namespace FallingPlatformsSurvival.Tests
             return instance;
         }
 
-        private static GameObject CreatePlatformObject(string objectName)
+        private static GameObject CreatePlatformObject(string objectName, bool active = true)
         {
             var platformObject = new GameObject(objectName);
+            platformObject.SetActive(active);
             platformObject.AddComponent<BoxCollider2D>();
             platformObject.AddComponent<Rigidbody2D>();
             platformObject.AddComponent<PlatformEffector2D>();

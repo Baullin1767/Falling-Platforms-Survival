@@ -232,7 +232,7 @@ MonoBehaviour:
   movementDistance: 2.5
   movementSpeed: 1.75
   startMovingRight: 1
-  railWay: {fileID: 0}
+  railWay: {fileID: 5320972440377527489}
 --- !u!251 &1861010293693780857
 PlatformEffector2D:
   m_ObjectHideFlags: 0
