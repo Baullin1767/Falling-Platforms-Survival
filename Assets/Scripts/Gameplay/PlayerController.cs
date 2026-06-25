@@ -112,6 +112,11 @@ namespace FallingPlatformsSurvival
             velocity.x = isGrounded ? 0f : ResolveHorizontalInput() * moveSpeed;
             body.linearVelocity = velocity;
 
+            if (isGrounded && CurrentPlatform != null && CurrentPlatform.MovementDelta != Vector2.zero)
+            {
+                body.position += CurrentPlatform.MovementDelta;
+            }
+
             if (HasBufferedJump && CanJump)
             {
                 velocity = body.linearVelocity;
@@ -227,6 +232,20 @@ namespace FallingPlatformsSurvival
             lastJumpPressedTime = Time.time;
         }
 
+        public void SetVerticalVelocity(float velocityY)
+        {
+            EnsureInitialized();
+
+            var velocity = body.linearVelocity;
+            velocity.y = velocityY;
+            body.linearVelocity = velocity;
+
+            isGrounded = false;
+            CurrentPlatform = null;
+            lastGroundedTime = float.NegativeInfinity;
+            lastJumpPressedTime = float.NegativeInfinity;
+        }
+
         public PlayerRuntimeState GetRuntimeState()
         {
             EnsureInitialized();
@@ -282,7 +301,7 @@ namespace FallingPlatformsSurvival
                 if (CurrentPlatform != groundedPlatform)
                 {
                     CurrentPlatform = groundedPlatform;
-                    CurrentPlatform?.NotifyPlayerLanded();
+                    CurrentPlatform?.NotifyPlayerLanded(this);
                 }
             }
             else if (isGrounded && groundedPlatform == null && !groundedStartGround)

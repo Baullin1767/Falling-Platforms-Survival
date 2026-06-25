@@ -9,7 +9,7 @@ namespace FallingPlatformsSurvival.Tests
 {
     public sealed class GameplayTests
     {
-        private const string ScenePath = "Assets/Scenes/SampleScene.unity";
+        private const string ScenePath = "Assets/Scenes/GameScene.unity";
         private const string PlayerPrefabPath = "Assets/Prefabs/Player.prefab";
         private const string PlatformPrefabPath = "Assets/Prefabs/Platform.prefab";
 
@@ -68,6 +68,80 @@ namespace FallingPlatformsSurvival.Tests
             Assert.That(spawn.y, Is.GreaterThan(-2f));
             Assert.That(platforms.Length, Is.GreaterThanOrEqualTo(snapshot.Count));
             Assert.That(AssetDatabase.GetAssetPath(platformManagerSerializedObject.FindProperty("platformPrefab").objectReferenceValue), Is.EqualTo(PlatformPrefabPath));
+        }
+
+        [Test]
+        public void PlatformManager_HasConfiguredSpecialPlatformPrefabsAndWeights()
+        {
+            var platformManager = FindRequired<PlatformManager>();
+            var serializedObject = new SerializedObject(platformManager);
+
+            Assert.That(serializedObject.FindProperty("specialPlatformSpawnChance").floatValue, Is.GreaterThan(0f));
+            Assert.That(serializedObject.FindProperty("fragilePlatformPrefab").objectReferenceValue, Is.Not.Null);
+            Assert.That(serializedObject.FindProperty("springPlatformPrefab").objectReferenceValue, Is.Not.Null);
+            Assert.That(serializedObject.FindProperty("movingPlatformPrefab").objectReferenceValue, Is.Not.Null);
+            Assert.That(serializedObject.FindProperty("minimumDistanceBetweenPlatforms").floatValue, Is.GreaterThan(0f));
+            Assert.That(serializedObject.FindProperty("fragileWeight").floatValue, Is.GreaterThan(0f));
+            Assert.That(serializedObject.FindProperty("springWeight").floatValue, Is.GreaterThan(0f));
+            Assert.That(serializedObject.FindProperty("movingWeight").floatValue, Is.GreaterThan(0f));
+        }
+
+        [Test]
+        public void FragilePlatform_TriggersShortVanishCountdownOnce()
+        {
+            var platformObject = CreatePlatformObject("FragilePlatform");
+            var platform = platformObject.GetComponent<PlatformBehaviour>();
+            var fragile = platformObject.AddComponent<FragilePlatform>();
+            var serializedObject = new SerializedObject(fragile);
+            serializedObject.FindProperty("breakDelay").floatValue = 0.25f;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+            platform.Activate(Vector2.zero, Vector2.one, 1.5f, 1f);
+            Assert.That(fragile.OnPlayerLanded(platform, null), Is.True);
+            Assert.That(platform.CollapseState, Is.EqualTo(PlatformCollapseState.Triggered));
+            Assert.That(platform.CollapseMode, Is.EqualTo(PlatformCollapseMode.Vanish));
+            Assert.That(platform.CountdownRemaining, Is.EqualTo(0.25f).Within(0.001f));
+
+            Assert.That(fragile.OnPlayerLanded(platform, null), Is.True);
+            Assert.That(platform.CountdownRemaining, Is.EqualTo(0.25f).Within(0.001f));
+        }
+
+        [Test]
+        public void SpringPlatform_SetsPlayerVerticalVelocity()
+        {
+            var playerObject = new GameObject("Player");
+            playerObject.AddComponent<SpriteRenderer>();
+            playerObject.AddComponent<CapsuleCollider2D>();
+            playerObject.AddComponent<Rigidbody2D>();
+            var player = playerObject.AddComponent<PlayerController>();
+
+            var springObject = new GameObject("SpringPlatform");
+            var spring = springObject.AddComponent<SpringPlatform>();
+            var serializedObject = new SerializedObject(spring);
+            serializedObject.FindProperty("springVelocity").floatValue = 33f;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+            Assert.That(spring.OnPlayerLanded(null, player), Is.False);
+            Assert.That(player.GetRuntimeState().Velocity.y, Is.EqualTo(33f).Within(0.001f));
+        }
+
+        [Test]
+        public void MovingPlatform_MovesHorizontallyAndReportsDelta()
+        {
+            var platformObject = CreatePlatformObject("MovingPlatform");
+            var platform = platformObject.GetComponent<PlatformBehaviour>();
+            var moving = platformObject.AddComponent<MovingPlatform>();
+            var serializedObject = new SerializedObject(moving);
+            serializedObject.FindProperty("movementDistance").floatValue = 2f;
+            serializedObject.FindProperty("movementSpeed").floatValue = 2f;
+            serializedObject.FindProperty("startMovingRight").boolValue = true;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+            platform.Activate(Vector2.zero, Vector2.one, 1.5f, 1f);
+            platformObject.SendMessage("FixedUpdate");
+
+            Assert.That(platformObject.transform.position.x, Is.GreaterThan(0f));
+            Assert.That(platform.MovementDelta.x, Is.GreaterThan(0f));
         }
 
         [Test]
@@ -143,6 +217,16 @@ namespace FallingPlatformsSurvival.Tests
             var instance = Object.FindFirstObjectByType<T>();
             Assert.That(instance, Is.Not.Null);
             return instance;
+        }
+
+        private static GameObject CreatePlatformObject(string objectName)
+        {
+            var platformObject = new GameObject(objectName);
+            platformObject.AddComponent<BoxCollider2D>();
+            platformObject.AddComponent<Rigidbody2D>();
+            platformObject.AddComponent<PlatformEffector2D>();
+            platformObject.AddComponent<PlatformBehaviour>();
+            return platformObject;
         }
     }
 }

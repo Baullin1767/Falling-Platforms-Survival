@@ -15,15 +15,18 @@ namespace FallingPlatformsSurvival
         private BoxCollider2D boxCollider;
         private Rigidbody2D body;
         private bool initialized;
+        private IPlatformLandingResponder[] landingResponders;
 
         private float collapseDelay;
         private float countdownRemaining;
         private float recycleTimer;
+        private Vector2 movementDelta;
 
         public int PlatformId { get; private set; }
         public PlatformCollapseMode CollapseMode { get; private set; }
         public PlatformCollapseState CollapseState { get; private set; } = PlatformCollapseState.Recycling;
         public float CountdownRemaining => countdownRemaining;
+        public Vector2 MovementDelta => movementDelta;
 
         private void Awake()
         {
@@ -75,6 +78,7 @@ namespace FallingPlatformsSurvival
             CollapseMode = Random.value <= fallWeight ? PlatformCollapseMode.Fall : PlatformCollapseMode.Vanish;
             CollapseState = PlatformCollapseState.Idle;
             recycleTimer = 0f;
+            movementDelta = Vector2.zero;
 
             transform.position = position;
             transform.rotation = Quaternion.identity;
@@ -91,7 +95,7 @@ namespace FallingPlatformsSurvival
             gameObject.SetActive(true);
         }
 
-        public void NotifyPlayerLanded()
+        public void NotifyPlayerLanded(PlayerController playerController)
         {
             EnsureInitialized();
 
@@ -100,8 +104,41 @@ namespace FallingPlatformsSurvival
                 return;
             }
 
+            var handledDefaultCollapse = false;
+            CacheLandingResponders();
+            for (var i = 0; i < landingResponders.Length; i++)
+            {
+                handledDefaultCollapse |= landingResponders[i].OnPlayerLanded(this, playerController);
+            }
+
+            if (!handledDefaultCollapse)
+            {
+                StartCollapseCountdown(collapseDelay);
+            }
+        }
+
+        public bool StartCollapseCountdown(float delaySeconds, PlatformCollapseMode? collapseModeOverride = null)
+        {
+            EnsureInitialized();
+
+            if (CollapseState != PlatformCollapseState.Idle)
+            {
+                return false;
+            }
+
+            if (collapseModeOverride.HasValue)
+            {
+                CollapseMode = collapseModeOverride.Value;
+            }
+
             CollapseState = PlatformCollapseState.Triggered;
-            countdownRemaining = collapseDelay;
+            countdownRemaining = Mathf.Max(0f, delaySeconds);
+            return true;
+        }
+
+        public void SetMovementDelta(Vector2 delta)
+        {
+            movementDelta = delta;
         }
 
         public void SetSimulationEnabled(bool enabled)
@@ -114,6 +151,7 @@ namespace FallingPlatformsSurvival
         {
             EnsureInitialized();
             CollapseState = PlatformCollapseState.Recycling;
+            movementDelta = Vector2.zero;
             body.simulated = false;
             body.linearVelocity = Vector2.zero;
             body.angularVelocity = 0f;
@@ -166,6 +204,11 @@ namespace FallingPlatformsSurvival
             body.interpolation = RigidbodyInterpolation2D.Interpolate;
 
             initialized = true;
+        }
+
+        private void CacheLandingResponders()
+        {
+            landingResponders ??= GetComponents<IPlatformLandingResponder>();
         }
     }
 }

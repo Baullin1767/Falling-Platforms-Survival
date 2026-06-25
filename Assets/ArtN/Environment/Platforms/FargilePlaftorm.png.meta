@@ -1,0 +1,936 @@
+fileFormatVersion: 2
+guid: 3ad5fbc80ddc4494ebb0d9584c8f1f7a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1000115794602082758
+    second: FargilePlaftorm_0
+  - first:
+      213: -3028105557922287424
+    second: FargilePlaftorm_1
+  - first:
+      213: 1910631625677981992
+    second: FargilePlaftorm_2
+  - first:
+      213: 4988115711430561584
+    second: FargilePlaftorm_3
+  - first:
+      213: -5849012481200480692
+    second: FargilePlaftorm_4
+  - first:
+      213: 9202616105158935100
+    second: FargilePlaftorm_5
+  - first:
+      213: 1610482323021923086
+    second: FargilePlaftorm_6
+  - first:
+      213: 4792173656286575233
+    second: FargilePlaftorm_7
+  - first:
+      213: -3956883558654546578
+    second: FargilePlaftorm_8
+  - first:
+      213: -5650946337643983771
+    second: FargilePlaftorm_9
+  - first:
+      213: 7317407415895061730
+    second: FargilePlaftorm_10
+  - first:
+      213: -3596706776107638650
+    second: FargilePlaftorm_11
+  - first:
+      213: 3551476498504648313
+    second: FargilePlaftorm_12
+  - first:
+      213: -4556800210859994069
+    second: FargilePlaftorm_13
+  - first:
+      213: -7449553401512349827
+    second: FargilePlaftorm_14
+  - first:
+      213: -5782775442310554192
+    second: FargilePlaftorm_15
+  - first:
+      213: -7732709654356523578
+    second: FargilePlaftorm_16
+  - first:
+      213: 4744690026834243208
+    second: FargilePlaftorm_17
+  - first:
+      213: 783255072647396391
+    second: FargilePlaftorm_18
+  - first:
+      213: -8597732656884376374
+    second: FargilePlaftorm_19
+  - first:
+      213: 4671091918129113769
+    second: FargilePlaftorm_20
+  - first:
+      213: 3257804407081924973
+    second: FargilePlaftorm_21
+  - first:
+      213: -3729514745881143473
+    second: FargilePlaftorm_22
+  - first:
+      213: 2863601893028579663
+    second: FargilePlaftorm_23
+  - first:
+      213: 4986487784663560341
+    second: FargilePlaftorm_24
+  - first:
+      213: -3258258415395453963
+    second: FargilePlaftorm_25
+  - first:
+      213: 6453162668680760363
+    second: FargilePlaftorm_26
+  - first:
+      213: -1585217137479966825
+    second: FargilePlaftorm_27
+  - first:
+      213: -8183077558941050612
+    second: FargilePlaftorm_28
+  - first:
+      213: -6610588803185491587
+    second: FargilePlaftorm_29
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FargilePlaftorm_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 704
+        width: 454
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3e3c70dbffde12f0800000000000000
+      internalID: -1000115794602082758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_1
+      rect:
+        serializedVersion: 2
+        x: 550
+        y: 704
+        width: 442
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0f7a5e9020af5d0800000000000000
+      internalID: -3028105557922287424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_2
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 682
+        width: 451
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 829c921375de38a10800000000000000
+      internalID: 1910631625677981992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 464
+        width: 457
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f0d56bfc8593540800000000000000
+      internalID: 4988115711430561584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_4
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 446
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4e1833432224dea0800000000000000
+      internalID: -5849012481200480692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_5
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 434
+        width: 34
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c328940179246bf70800000000000000
+      internalID: 9202616105158935100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_6
+      rect:
+        serializedVersion: 2
+        x: 547
+        y: 458
+        width: 220
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0384ccd325995610800000000000000
+      internalID: 1610482323021923086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_7
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 466
+        width: 211
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a32f4ec88318240800000000000000
+      internalID: 4792173656286575233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_8
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 466
+        width: 193
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6defcc2e535619c0800000000000000
+      internalID: -3956883558654546578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_9
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 464
+        width: 235
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56c8fe3fe3ec391b0800000000000000
+      internalID: -5650946337643983771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_10
+      rect:
+        serializedVersion: 2
+        x: 754
+        y: 434
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e4fb358647ac8560800000000000000
+      internalID: 7317407415895061730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_11
+      rect:
+        serializedVersion: 2
+        x: 787
+        y: 434
+        width: 34
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6802dd84e3ee51ec0800000000000000
+      internalID: -3596706776107638650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_12
+      rect:
+        serializedVersion: 2
+        x: 1228
+        y: 418
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97684811f01694130800000000000000
+      internalID: 3551476498504648313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_13
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 434
+        width: 37
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b24d347e95ef2c0c0800000000000000
+      internalID: -4556800210859994069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_14
+      rect:
+        serializedVersion: 2
+        x: 1261
+        y: 416
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7fad8796aedd9890800000000000000
+      internalID: -7449553401512349827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_15
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 374
+        width: 40
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bd1a39af547fbfa0800000000000000
+      internalID: -5782775442310554192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_16
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 172
+        width: 322
+        height: 174
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c588dcf985efa490800000000000000
+      internalID: -7732709654356523578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_17
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 166
+        width: 307
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88e2bc2e07688d140800000000000000
+      internalID: 4744690026834243208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_18
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 258
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72cbba5b65eaeda00800000000000000
+      internalID: 783255072647396391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_19
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 234
+        width: 76
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acc91a883b7bea880800000000000000
+      internalID: -8597732656884376374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_20
+      rect:
+        serializedVersion: 2
+        x: 991
+        y: 282
+        width: 49
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aaa84dd95d03d040800000000000000
+      internalID: 4671091918129113769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_21
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 282
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d69f1dff8db063d20800000000000000
+      internalID: 3257804407081924973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_22
+      rect:
+        serializedVersion: 2
+        x: 1336
+        y: 254
+        width: 37
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f475c23391a1e3cc0800000000000000
+      internalID: -3729514745881143473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_23
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 176
+        width: 145
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49ca1cefbe8db720800000000000000
+      internalID: 2863601893028579663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_24
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 232
+        width: 78
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59032b97830933540800000000000000
+      internalID: 4986487784663560341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_25
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 248
+        width: 16
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f34de3fb3758c2d0800000000000000
+      internalID: -3258258415395453963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_26
+      rect:
+        serializedVersion: 2
+        x: 989
+        y: 224
+        width: 18
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c4780c14d3e8950800000000000000
+      internalID: 6453162668680760363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_27
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 210
+        width: 25
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f15ac896d200ae0800000000000000
+      internalID: -1585217137479966825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_28
+      rect:
+        serializedVersion: 2
+        x: 982
+        y: 176
+        width: 64
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0919d1e05edf6e80800000000000000
+      internalID: -8183077558941050612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FargilePlaftorm_29
+      rect:
+        serializedVersion: 2
+        x: 1249
+        y: 182
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7144f502887244a0800000000000000
+      internalID: -6610588803185491587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FargilePlaftorm_0: -1000115794602082758
+      FargilePlaftorm_1: -3028105557922287424
+      FargilePlaftorm_10: 7317407415895061730
+      FargilePlaftorm_11: -3596706776107638650
+      FargilePlaftorm_12: 3551476498504648313
+      FargilePlaftorm_13: -4556800210859994069
+      FargilePlaftorm_14: -7449553401512349827
+      FargilePlaftorm_15: -5782775442310554192
+      FargilePlaftorm_16: -7732709654356523578
+      FargilePlaftorm_17: 4744690026834243208
+      FargilePlaftorm_18: 783255072647396391
+      FargilePlaftorm_19: -8597732656884376374
+      FargilePlaftorm_2: 1910631625677981992
+      FargilePlaftorm_20: 4671091918129113769
+      FargilePlaftorm_21: 3257804407081924973
+      FargilePlaftorm_22: -3729514745881143473
+      FargilePlaftorm_23: 2863601893028579663
+      FargilePlaftorm_24: 4986487784663560341
+      FargilePlaftorm_25: -3258258415395453963
+      FargilePlaftorm_26: 6453162668680760363
+      FargilePlaftorm_27: -1585217137479966825
+      FargilePlaftorm_28: -8183077558941050612
+      FargilePlaftorm_29: -6610588803185491587
+      FargilePlaftorm_3: 4988115711430561584
+      FargilePlaftorm_4: -5849012481200480692
+      FargilePlaftorm_5: 9202616105158935100
+      FargilePlaftorm_6: 1610482323021923086
+      FargilePlaftorm_7: 4792173656286575233
+      FargilePlaftorm_8: -3956883558654546578
+      FargilePlaftorm_9: -5650946337643983771
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
