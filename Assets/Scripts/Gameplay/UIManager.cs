@@ -9,26 +9,26 @@ namespace FallingPlatformsSurvival
     {
         private static readonly string[] ToxicLossPhrases =
         {
-            // "You lose it again.",
-            // "Gravity says skill issue.",
-            // "Nice fall. Very cinematic.",
-            // "The floor dodged you.",
-            // "Almost impressive. Almost.",
-            // "Your survival plan was bold.",
-            // "Down bad. Literally.",
-            // "That landing needs a sequel.",
-            // "Platforming is optional, apparently.",
-            // "The abyss has standards.",
-            "Ты снова проиграл.",
-            "Гравитация опять победила.",
-            "Платформа тебя не дождалась.",
-            "Падение засчитано. Навык нет.",
-            "Почти получилось, но нет.",
-            "Ты снова меня уронил.",
-            "Минус попытка, плюс опыт.",
-            "Упал я красиво. Бесполезно, но красиво.",
-            "Платформы сегодня не твои друзья.",
-            "Еще один полет без лицензии."
+            "You lose it again.",
+            "Gravity says skill issue.",
+            "Nice fall. Very cinematic.",
+            "The floor dodged you.",
+            "Almost impressive. Almost.",
+            "Your survival plan was bold.",
+            "Down bad. Literally.",
+            "That landing needs a sequel.",
+            "Platforming is optional, apparently.",
+            "The abyss has standards.",
+            // "Ты снова проиграл.",
+            // "Гравитация опять победила.",
+            // "Платформа тебя не дождалась.",
+            // "Падение засчитано. Навык нет.",
+            // "Почти получилось, но нет.",
+            // "Ты снова меня уронил.",
+            // "Минус попытка, плюс опыт.",
+            // "Упал я красиво. Бесполезно, но красиво.",
+            // "Платформы сегодня не твои друзья.",
+            // "Еще один полет без лицензии."
         };
 
         [SerializeField] private Canvas rootCanvas;
