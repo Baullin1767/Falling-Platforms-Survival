@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;
 
 namespace FallingPlatformsSurvival
 {
@@ -9,19 +11,17 @@ namespace FallingPlatformsSurvival
         [SerializeField] private Transform bounceVisual;
         [SerializeField] private float bounceScaleY = 1.2f;
         [SerializeField] private float bounceDuration = 0.12f;
+        [SerializeField] private Animator springAnimator;
+        [SerializeField] private AnimationClip jumpAnimationClip;
+        [SerializeField] private string jumpAnimationStateName = "SpringPlatformJump";
 
         private Coroutine bounceRoutine;
         private Vector3 originalScale;
+        private PlayableGraph jumpAnimationGraph;
 
         private void Awake()
         {
-            if (bounceVisual == null)
-            {
-                var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-                bounceVisual = spriteRenderer != null ? spriteRenderer.transform : transform;
-            }
-
-            originalScale = bounceVisual.localScale;
+            ResolveVisualReferences();
         }
 
         private void OnDisable()
@@ -36,11 +36,14 @@ namespace FallingPlatformsSurvival
             {
                 bounceVisual.localScale = originalScale;
             }
+
+            DestroyJumpAnimationGraph();
         }
 
         public bool OnPlayerLanded(PlatformBehaviour platform, PlayerController player)
         {
-            player.SetVerticalVelocity(springVelocity);
+            player?.SetVerticalVelocity(springVelocity);
+            PlayJumpAnimation();
 
             if (bounceVisual != null && gameObject.activeInHierarchy && Application.isPlaying)
             {
@@ -53,6 +56,49 @@ namespace FallingPlatformsSurvival
             }
 
             return false;
+        }
+
+        private void ResolveVisualReferences()
+        {
+            if (bounceVisual == null)
+            {
+                var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+                bounceVisual = spriteRenderer != null ? spriteRenderer.transform : transform;
+            }
+
+            if (springAnimator == null && bounceVisual != null)
+            {
+                springAnimator = bounceVisual.GetComponent<Animator>();
+            }
+
+            if (springAnimator == null)
+            {
+                springAnimator = GetComponentInChildren<Animator>();
+            }
+
+            originalScale = bounceVisual.localScale;
+        }
+
+        private void PlayJumpAnimation()
+        {
+            if (springAnimator == null)
+            {
+                return;
+            }
+
+            springAnimator.enabled = true;
+
+            if (jumpAnimationClip != null)
+            {
+                DestroyJumpAnimationGraph();
+                AnimationPlayableUtilities.PlayClip(springAnimator, jumpAnimationClip, out jumpAnimationGraph);
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(jumpAnimationStateName))
+            {
+                springAnimator.Play(jumpAnimationStateName, 0, 0f);
+            }
         }
 
         private IEnumerator PlayBounce()
@@ -74,6 +120,14 @@ namespace FallingPlatformsSurvival
 
             bounceVisual.localScale = originalScale;
             bounceRoutine = null;
+        }
+
+        private void DestroyJumpAnimationGraph()
+        {
+            if (jumpAnimationGraph.IsValid())
+            {
+                jumpAnimationGraph.Destroy();
+            }
         }
     }
 }

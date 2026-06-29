@@ -104,16 +104,10 @@ namespace FallingPlatformsSurvival
                 return;
             }
 
-            var handledDefaultCollapse = false;
             CacheLandingResponders();
             for (var i = 0; i < landingResponders.Length; i++)
             {
-                handledDefaultCollapse |= landingResponders[i].OnPlayerLanded(this, playerController);
-            }
-
-            if (!handledDefaultCollapse)
-            {
-                StartCollapseCountdown(collapseDelay);
+                landingResponders[i].OnPlayerLanded(this, playerController);
             }
         }
 

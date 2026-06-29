@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace FallingPlatformsSurvival.Tests
             Assert.That(spawn.y, Is.GreaterThan(-2f));
             Assert.That(platforms.Length, Is.GreaterThanOrEqualTo(snapshot.Count));
             Assert.That(AssetDatabase.GetAssetPath(platformManagerSerializedObject.FindProperty("platformPrefab").objectReferenceValue), Is.EqualTo(PlatformPrefabPath));
+            AssertActivePlatformCollidersDoNotOverlap();
         }
 
         [Test]
@@ -77,6 +79,7 @@ namespace FallingPlatformsSurvival.Tests
             var serializedObject = new SerializedObject(platformManager);
 
             Assert.That(serializedObject.FindProperty("specialPlatformSpawnChance").floatValue, Is.GreaterThan(0f));
+            Assert.That(serializedObject.FindProperty("specialPlatformSpawnChance").floatValue, Is.LessThanOrEqualTo(0.15f));
             Assert.That(serializedObject.FindProperty("fragilePlatformPrefab").objectReferenceValue, Is.Not.Null);
             Assert.That(serializedObject.FindProperty("springPlatformPrefab").objectReferenceValue, Is.Not.Null);
             Assert.That(serializedObject.FindProperty("movingPlatformPrefab").objectReferenceValue, Is.Not.Null);
@@ -87,23 +90,96 @@ namespace FallingPlatformsSurvival.Tests
         }
 
         [Test]
+        public void PlatformManager_UsesPrefabScaleForSpecialPlatforms()
+        {
+            var platformManager = FindRequired<PlatformManager>();
+            var serializedObject = new SerializedObject(platformManager);
+            var springPrefab = (GameObject)serializedObject.FindProperty("springPlatformPrefab").objectReferenceValue;
+            var getPrefabScale = typeof(PlatformManager).GetMethod("GetPrefabScale", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            Assert.That(springPrefab, Is.Not.Null);
+            Assert.That(getPrefabScale, Is.Not.Null);
+
+            var scale = (Vector2)getPrefabScale.Invoke(platformManager, new object[] { springPrefab });
+            Assert.That(scale.x, Is.EqualTo(springPrefab.transform.localScale.x));
+            Assert.That(scale.y, Is.EqualTo(springPrefab.transform.localScale.y));
+        }
+
+        [Test]
+        public void PlatformManager_BlocksSpecialPlatformsBeforeConfiguredCount()
+        {
+            var platformManager = FindRequired<PlatformManager>();
+            var choosePlatform = typeof(PlatformManager).GetMethod("ChoosePlatformPrefabForNextSpawn", BindingFlags.Instance | BindingFlags.NonPublic);
+            var serializedObject = new SerializedObject(platformManager);
+
+            serializedObject.FindProperty("specialPlatformSpawnChance").floatValue = 1f;
+            serializedObject.FindProperty("specialPlatformsStartAfterCount").intValue = 100;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+            Assert.That(choosePlatform, Is.Not.Null);
+            Assert.That(choosePlatform.Invoke(platformManager, null), Is.Null);
+        }
+
+        [Test]
+        public void PlatformManager_SpecialChanceIncreasesAfterMisses()
+        {
+            var platformManager = FindRequired<PlatformManager>();
+            var serializedObject = new SerializedObject(platformManager);
+            var chanceMethod = typeof(PlatformManager).GetMethod("GetCurrentSpecialPlatformSpawnChance", BindingFlags.Instance | BindingFlags.NonPublic);
+            var missesField = typeof(PlatformManager).GetField("normalPlatformsSinceLastSpecial", BindingFlags.Instance | BindingFlags.NonPublic);
+
+            serializedObject.FindProperty("specialPlatformSpawnChance").floatValue = 0.1f;
+            serializedObject.FindProperty("specialChanceIncreasePerMiss").floatValue = 0.05f;
+            serializedObject.FindProperty("specialMaxSpawnChance").floatValue = 0.45f;
+            serializedObject.ApplyModifiedPropertiesWithoutUndo();
+            missesField.SetValue(platformManager, 4);
+
+            Assert.That(chanceMethod, Is.Not.Null);
+            Assert.That((float)chanceMethod.Invoke(platformManager, null), Is.EqualTo(0.3f).Within(0.001f));
+        }
+
+        [Test]
         public void FragilePlatform_TriggersShortVanishCountdownOnce()
         {
             var platformObject = CreatePlatformObject("FragilePlatform");
             var platform = platformObject.GetComponent<PlatformBehaviour>();
             var fragile = platformObject.AddComponent<FragilePlatform>();
+            var spriteRenderer = platformObject.AddComponent<SpriteRenderer>();
+            var idleSprite = CreateTestSprite(Color.white);
+            var breakingSprite = CreateTestSprite(Color.red);
             var serializedObject = new SerializedObject(fragile);
             serializedObject.FindProperty("breakDelay").floatValue = 0.25f;
+            serializedObject.FindProperty("spriteRenderer").objectReferenceValue = spriteRenderer;
+            serializedObject.FindProperty("idleSprite").objectReferenceValue = idleSprite;
+            var breakingSprites = serializedObject.FindProperty("breakingSprites");
+            breakingSprites.arraySize = 1;
+            breakingSprites.GetArrayElementAtIndex(0).objectReferenceValue = breakingSprite;
             serializedObject.ApplyModifiedPropertiesWithoutUndo();
 
             platform.Activate(Vector2.zero, Vector2.one, 1.5f, 1f);
+            spriteRenderer.sprite = idleSprite;
+
             Assert.That(fragile.OnPlayerLanded(platform, null), Is.True);
             Assert.That(platform.CollapseState, Is.EqualTo(PlatformCollapseState.Triggered));
             Assert.That(platform.CollapseMode, Is.EqualTo(PlatformCollapseMode.Vanish));
             Assert.That(platform.CountdownRemaining, Is.EqualTo(0.25f).Within(0.001f));
+            Assert.That(spriteRenderer.sprite, Is.SameAs(breakingSprite));
 
             Assert.That(fragile.OnPlayerLanded(platform, null), Is.True);
             Assert.That(platform.CountdownRemaining, Is.EqualTo(0.25f).Within(0.001f));
+        }
+
+        [Test]
+        public void PlatformBehaviour_DefaultLandingDoesNotStartCollapse()
+        {
+            var platformObject = CreatePlatformObject("Platform");
+            var platform = platformObject.GetComponent<PlatformBehaviour>();
+
+            platform.Activate(Vector2.zero, Vector2.one, 1.5f, 1f);
+            platform.NotifyPlayerLanded(null);
+
+            Assert.That(platform.CollapseState, Is.EqualTo(PlatformCollapseState.Idle));
+            Assert.That(platform.CountdownRemaining, Is.EqualTo(1.5f).Within(0.001f));
         }
 
         [Test]
@@ -254,6 +330,41 @@ namespace FallingPlatformsSurvival.Tests
             platformObject.AddComponent<PlatformEffector2D>();
             platformObject.AddComponent<PlatformBehaviour>();
             return platformObject;
+        }
+
+        private static void AssertActivePlatformCollidersDoNotOverlap()
+        {
+            var platforms = Object.FindObjectsByType<PlatformBehaviour>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            for (var i = 0; i < platforms.Length; i++)
+            {
+                var firstCollider = platforms[i].GetComponent<Collider2D>();
+                if (firstCollider == null)
+                {
+                    continue;
+                }
+
+                for (var j = i + 1; j < platforms.Length; j++)
+                {
+                    var secondCollider = platforms[j].GetComponent<Collider2D>();
+                    if (secondCollider == null)
+                    {
+                        continue;
+                    }
+
+                    Assert.That(
+                        firstCollider.bounds.Intersects(secondCollider.bounds),
+                        Is.False,
+                        $"{platforms[i].name} overlaps {platforms[j].name}");
+                }
+            }
+        }
+
+        private static Sprite CreateTestSprite(Color color)
+        {
+            var texture = new Texture2D(1, 1);
+            texture.SetPixel(0, 0, color);
+            texture.Apply();
+            return Sprite.Create(texture, new Rect(0f, 0f, 1f, 1f), new Vector2(0.5f, 0.5f), 1f);
         }
     }
 }

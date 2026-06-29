@@ -27,18 +27,19 @@ namespace FallingPlatformsSurvival
         [SerializeField, Range(0f, 1f)] private float fallWeight = 0.75f;
 
         [Header("Special Platforms")]
-        [SerializeField, Range(0f, 1f)] private float specialPlatformSpawnChance = 0.3f;
+        [SerializeField, Range(0f, 1f)] private float specialPlatformSpawnChance = 0.12f;
+        [SerializeField] private int specialPlatformsStartAfterCount = 100;
+        [SerializeField, Range(0f, 1f)] private float specialChanceIncreasePerMiss = 0.01f;
+        [SerializeField, Range(0f, 1f)] private float specialMaxSpawnChance = 0.45f;
         [SerializeField] private GameObject fragilePlatformPrefab;
         [SerializeField] private GameObject springPlatformPrefab;
         [SerializeField] private GameObject movingPlatformPrefab;
-        [SerializeField] private float specialMinHorizontalOffset = 1.5f;
-        [SerializeField] private float specialMaxHorizontalOffset = 3.5f;
-        [SerializeField] private float specialMinVerticalOffset = -0.5f;
-        [SerializeField] private float specialMaxVerticalOffset = 0.8f;
         [SerializeField] private float minimumDistanceBetweenPlatforms = 0.4f;
         [SerializeField] private float fragileWeight = 0.4f;
         [SerializeField] private float springWeight = 0.3f;
         [SerializeField] private float movingWeight = 0.3f;
+
+        private const int MaxNormalSpawnAttempts = 12;
 
         private readonly List<PlatformBehaviour> allPlatforms = new();
         private readonly List<PlatformBehaviour> normalPlatformPool = new();
@@ -50,6 +51,8 @@ namespace FallingPlatformsSurvival
         private PlayerController player;
         private float nextSpawnY;
         private float lastSpawnX;
+        private int spawnedPlatformCount;
+        private int normalPlatformsSinceLastSpecial;
 
         public bool SimulationActive { get; private set; } = true;
         public Collider2D StartGroundCollider => ResolveStartGroundCollider();
@@ -87,6 +90,8 @@ namespace FallingPlatformsSurvival
             activePlatforms.Clear();
             var groundBounds = groundCollider.bounds;
             lastSpawnX = groundBounds.center.x;
+            spawnedPlatformCount = 0;
+            normalPlatformsSinceLastSpecial = 0;
 
             nextSpawnY = groundBounds.max.y + Random.Range(verticalSpacingRange.x, verticalSpacingRange.y);
             for (var i = 0; i < startingPlatformCount; i++)
@@ -223,88 +228,110 @@ namespace FallingPlatformsSurvival
 
         private void SpawnProceduralPlatform()
         {
-            var deltaX = Random.Range(-maxHorizontalStep, maxHorizontalStep);
-            var width = Random.Range(platformWidthRange.x, platformWidthRange.y);
-
-            lastSpawnX = Mathf.Clamp(lastSpawnX + deltaX, -horizontalBounds, horizontalBounds);
-            var position = new Vector2(lastSpawnX, nextSpawnY);
-            var scale = new Vector2(width, platformHeight);
+            var specialPrefab = ChoosePlatformPrefabForNextSpawn();
+            var scale = specialPrefab != null ? GetPrefabScale(specialPrefab) : GetRandomNormalPlatformScale();
             var timer = Random.Range(collapseDelayRange.x, collapseDelayRange.y);
+            var position = ResolveNormalPlatformPosition(scale);
 
-            var normalPlatform = SpawnPlatformAt(position, scale, timer);
-            TrySpawnSpecialPlatformNear(normalPlatform, scale);
+            SpawnPlatformAt(position, scale, timer, specialPrefab);
+            RecordPlatformSpawned(specialPrefab != null);
             nextSpawnY += Random.Range(verticalSpacingRange.x, verticalSpacingRange.y);
         }
 
-        private PlatformBehaviour SpawnPlatformAt(Vector2 position, Vector2 scale, float timer)
+        private Vector2 GetRandomNormalPlatformScale()
         {
-            var platform = GetReusablePlatform();
+            var width = Random.Range(platformWidthRange.x, platformWidthRange.y);
+            return new Vector2(width, platformHeight);
+        }
+
+        private Vector2 ResolveNormalPlatformPosition(Vector2 scale)
+        {
+            var spawnY = nextSpawnY;
+            var candidateX = lastSpawnX;
+
+            for (var i = 0; i < MaxNormalSpawnAttempts; i++)
+            {
+                var deltaX = Random.Range(-maxHorizontalStep, maxHorizontalStep);
+                candidateX = ClampPlatformCenterX(lastSpawnX + deltaX, scale);
+                var candidatePosition = new Vector2(candidateX, spawnY);
+
+                if (IsPlatformPositionValid(candidatePosition, scale))
+                {
+                    lastSpawnX = candidateX;
+                    nextSpawnY = spawnY;
+                    return candidatePosition;
+                }
+            }
+
+            spawnY += platformHeight + minimumDistanceBetweenPlatforms;
+            candidateX = ClampPlatformCenterX(candidateX, scale);
+            var fallbackPosition = new Vector2(candidateX, spawnY);
+            while (!IsPlatformPositionValid(fallbackPosition, scale))
+            {
+                spawnY += platformHeight + minimumDistanceBetweenPlatforms;
+                fallbackPosition.y = spawnY;
+            }
+
+            lastSpawnX = candidateX;
+            nextSpawnY = spawnY;
+            return fallbackPosition;
+        }
+
+        private PlatformBehaviour SpawnPlatformAt(Vector2 position, Vector2 scale, float timer, GameObject prefabOverride = null)
+        {
+            var platform = prefabOverride != null ? GetReusableSpecialPlatform(prefabOverride) : GetReusablePlatform();
+            if (platform == null)
+            {
+                platform = GetReusablePlatform();
+                scale = GetRandomNormalPlatformScale();
+            }
+
             platform.Activate(position, scale, timer, fallWeight);
             activePlatforms.Add(platform);
             return platform;
         }
 
-        private void TrySpawnSpecialPlatformNear(PlatformBehaviour normalPlatform, Vector2 normalScale)
+        private GameObject ChoosePlatformPrefabForNextSpawn()
         {
-            if (normalPlatform == null || Random.value > specialPlatformSpawnChance)
+            if (spawnedPlatformCount < specialPlatformsStartAfterCount)
             {
-                return;
+                return null;
             }
 
-            var specialPrefab = ChooseSpecialPlatformPrefab();
-            if (specialPrefab == null)
-            {
-                return;
-            }
-
-            var normalPosition = (Vector2)normalPlatform.transform.position;
-            var width = Random.Range(platformWidthRange.x, platformWidthRange.y);
-            var scale = new Vector2(width, platformHeight);
-            const int maxAttempts = 8;
-
-            for (var i = 0; i < maxAttempts; i++)
-            {
-                var side = Random.value < 0.5f ? -1f : 1f;
-                var horizontalOffset = Random.Range(specialMinHorizontalOffset, specialMaxHorizontalOffset) * side;
-                var verticalOffset = Random.Range(specialMinVerticalOffset, specialMaxVerticalOffset);
-
-                if (Mathf.Abs(verticalOffset) < 0.1f)
-                {
-                    verticalOffset = verticalOffset < 0f ? -0.1f : 0.1f;
-                }
-
-                var candidatePosition = normalPosition + new Vector2(horizontalOffset, verticalOffset);
-                if (!IsSpecialPlatformPositionValid(candidatePosition, scale, normalPosition, normalScale))
-                {
-                    continue;
-                }
-
-                var platform = GetReusableSpecialPlatform(specialPrefab);
-                if (platform == null)
-                {
-                    return;
-                }
-
-                var timer = Random.Range(collapseDelayRange.x, collapseDelayRange.y);
-                platform.Activate(candidatePosition, scale, timer, fallWeight);
-                activePlatforms.Add(platform);
-                return;
-            }
+            var chance = GetCurrentSpecialPlatformSpawnChance();
+            return Random.value <= chance ? ChooseSpecialPlatformPrefab() : null;
         }
 
-        private bool IsSpecialPlatformPositionValid(
-            Vector2 candidatePosition,
-            Vector2 candidateScale,
-            Vector2 normalPosition,
-            Vector2 normalScale)
+        private float GetCurrentSpecialPlatformSpawnChance()
+        {
+            var baseChance = Mathf.Clamp01(specialPlatformSpawnChance);
+            var maxChance = Mathf.Max(baseChance, specialMaxSpawnChance);
+            var increasedChance = baseChance + normalPlatformsSinceLastSpecial * Mathf.Max(0f, specialChanceIncreasePerMiss);
+            return Mathf.Clamp(increasedChance, 0f, maxChance);
+        }
+
+        private void RecordPlatformSpawned(bool spawnedSpecialPlatform)
+        {
+            spawnedPlatformCount++;
+            if (spawnedSpecialPlatform)
+            {
+                normalPlatformsSinceLastSpecial = 0;
+                return;
+            }
+
+            normalPlatformsSinceLastSpecial++;
+        }
+
+        private Vector2 GetPrefabScale(GameObject prefab)
+        {
+            var prefabScale = prefab.transform.localScale;
+            return new Vector2(prefabScale.x, prefabScale.y);
+        }
+
+        private bool IsPlatformPositionValid(Vector2 candidatePosition, Vector2 candidateScale)
         {
             var halfWidth = candidateScale.x * 0.5f;
             if (candidatePosition.x - halfWidth < -horizontalBounds || candidatePosition.x + halfWidth > horizontalBounds)
-            {
-                return false;
-            }
-
-            if (PlatformsOverlap(candidatePosition, candidateScale, normalPosition, normalScale))
             {
                 return false;
             }
@@ -325,6 +352,14 @@ namespace FallingPlatformsSurvival
             }
 
             return true;
+        }
+
+        private float ClampPlatformCenterX(float centerX, Vector2 scale)
+        {
+            var halfWidth = scale.x * 0.5f;
+            var minX = -horizontalBounds + halfWidth;
+            var maxX = horizontalBounds - halfWidth;
+            return minX <= maxX ? Mathf.Clamp(centerX, minX, maxX) : 0f;
         }
 
         private bool PlatformsOverlap(Vector2 firstPosition, Vector2 firstScale, Vector2 secondPosition, Vector2 secondScale)

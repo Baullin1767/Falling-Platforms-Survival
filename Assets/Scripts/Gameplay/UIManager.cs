@@ -7,6 +7,30 @@ namespace FallingPlatformsSurvival
 {
     public sealed class UIManager : MonoBehaviour
     {
+        private static readonly string[] ToxicLossPhrases =
+        {
+            // "You lose it again.",
+            // "Gravity says skill issue.",
+            // "Nice fall. Very cinematic.",
+            // "The floor dodged you.",
+            // "Almost impressive. Almost.",
+            // "Your survival plan was bold.",
+            // "Down bad. Literally.",
+            // "That landing needs a sequel.",
+            // "Platforming is optional, apparently.",
+            // "The abyss has standards.",
+            "Ты снова проиграл.",
+            "Гравитация опять победила.",
+            "Платформа тебя не дождалась.",
+            "Падение засчитано. Навык нет.",
+            "Почти получилось, но нет.",
+            "Ты снова меня уронил.",
+            "Минус попытка, плюс опыт.",
+            "Упал я красиво. Бесполезно, но красиво.",
+            "Платформы сегодня не твои друзья.",
+            "Еще один полет без лицензии."
+        };
+
         [SerializeField] private Canvas rootCanvas;
         [SerializeField] private GameObject gameplayHudRoot;
         [SerializeField] private GameObject touchControlsRoot;
@@ -97,7 +121,7 @@ namespace FallingPlatformsSurvival
 
             UpdateTimer(elapsedTime);
             finalTimeText.text = $"Final Time  {elapsedTime:0.0}s";
-            // restartHintText.text = "Tap Restart to drop back in.";
+            restartHintText.text = ToxicLossPhrases[Random.Range(0, ToxicLossPhrases.Length)];
             SetTouchControlsActive(false);
             gameOverPanel.SetActive(true);
 
