@@ -39,7 +39,7 @@ namespace FallingPlatformsSurvival
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject pausePanel;
         [SerializeField] private Text finalTimeText;
-        [SerializeField] private Text restartHintText;
+        [SerializeField] private TextMeshProUGUI restartHintText;
         [SerializeField] private Button restartButton;
         [SerializeField] private Button mainMenuButton;
         [SerializeField] private Button restartButtonPause;

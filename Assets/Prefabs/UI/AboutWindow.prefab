@@ -162,8 +162,8 @@ MonoBehaviour:
     This is a modular mobile main menu sample built with a centralized
     windows manager, mock leaderboard data, and a ScriptableObject-driven skin selector.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
+  m_sharedMaterial: {fileID: 6453485237370726136, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -484,8 +484,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Close
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
+  m_sharedMaterial: {fileID: 6453485237370726136, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -620,8 +620,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: About
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
+  m_sharedMaterial: {fileID: 6453485237370726136, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

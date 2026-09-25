@@ -285,7 +285,7 @@ PlayerSettings:
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
-  androidUseCustomKeystore: 1
+  androidUseCustomKeystore: 0
   m_AndroidBanners:
   - width: 320
     height: 180
@@ -498,6 +498,9 @@ PlayerSettings:
   m_BuildTargetBatching:
   - m_BuildTarget: Android
     m_StaticBatching: 1
+    m_DynamicBatching: 0
+  - m_BuildTarget: WebGL
+    m_StaticBatching: 0
     m_DynamicBatching: 0
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs: []

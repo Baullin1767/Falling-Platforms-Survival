@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -225,7 +225,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Nova
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -503,7 +503,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 520
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 2e31c18d42a94d04ab3a78d0393e7814, type: 2}
   m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
